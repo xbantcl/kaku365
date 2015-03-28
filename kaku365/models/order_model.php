@@ -209,6 +209,7 @@ class Order_model extends MY_Model {
 			$order_detail['amount'] = $go['amount'];
 			$order_detail['price'] = $one['price'];
 			$order_detail['subtotal'] = $go['amount'] * $one['price'];
+			$order_detail['detail']   = $go['detail'];
 			$price_total += $order_detail['subtotal'];
 			$order_details[] = $order_detail;
 		}

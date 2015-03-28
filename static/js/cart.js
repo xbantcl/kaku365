@@ -1,7 +1,10 @@
 function sumtotal($cart_id){
-    var subtotal = $('tr[id=' + $cart_id + '] span[id="price"]').html() * $('tr[id=' + $cart_id + '] input[name="amount"]').val();
+	var price = parseFloat($('tr[id=' + $cart_id + '] input[name="price"]').val());
+    var amount = parseInt($('tr[id=' + $cart_id + '] input[name="amount"]').val());
+    var subtotal = price * amount;
     var res_subtotal = subtotal.toFixed(2);
     $('tr[id=' + $cart_id + '] span[id="subtotal"]').html(res_subtotal);
+    
 }
 
 /*
@@ -47,7 +50,6 @@ function balance() {
 	$('span[id="number"]').html(sum_amount);
 	var sum_price = 0;
 	$.each($("span[id='subtotal']"), function() {
-        console.log(parseFloat(this.innerHTML))
 		sum_price += parseFloat(this.innerHTML);
     })
 	var res_sum_price = sum_price.toFixed(2);

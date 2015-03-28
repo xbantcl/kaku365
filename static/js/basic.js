@@ -350,6 +350,7 @@ function del_cart($cart_id) {
 			if (result == 'success') {
 				$('tr[id=' + $cart_id + ']').remove();
 				$('li[id=' + $cart_id + ']').remove();
+				location.reload();
 				balance();
 			} else {
 				alert('删除失败.');
@@ -411,18 +412,20 @@ function join_order($shop_id) {
 		alert('请选择收货地址.');
 		return false;
 	}
-	var $carts = new Array();
+	var carts = new Array();
 	$(':checkbox:checked[name=cart_id]').each(function() {
-		$carts.push($(this).val());
+		//$carts.push($(this).val());
+	    remark = $(this).parent().parent().find("td").eq(7).find('textarea').val();
+		carts.push($(this).val() + '|' + remark);
 	});
-	if ($carts.length == 0) {
+	if (carts.length == 0) {
 		alert('无商品.');
 		return false;
 	}
 	$.post(url, {
 		'shop_id': $shop_id,
 		'address_id': address_id,
-		'carts': $carts
+		'carts': carts
 	}, function(result) {
 		if (result == 'false') {
 			alert('订单提交失败.');
@@ -525,8 +528,8 @@ function join_cart($goods_id, $shop_id) {
 	}, function(result) {
 		if (result == 'true') {
 			update_cart_status();
-            //alert("添加成功");
-            window.alert('添加成功！');
+            // window.alert('添加成功！');
+			location.reload();
 		} else if (result == 'no_login') {
 			alert('你还没有登录,请登录之后再添加商品到你的购物车.');
 		} else if (result == 'false') {

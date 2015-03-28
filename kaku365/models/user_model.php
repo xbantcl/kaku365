@@ -155,7 +155,7 @@ class User_model extends MY_Model {
 	 */ 
 	public function get_carts_by_id($user_id){
 		$this -> db -> select('c.id,c.amount,c.subtotal');
-		$this -> db -> select('g.id as goods_id,g.name as goods_name,g.cover_image as goods_img,g.price as goods_price');
+		$this -> db -> select('g.id as goods_id,g.name as goods_name,g.cover_image as goods_img,g.price as goods_price, g.product_code as goods_code');
 		$this -> db -> from('cart as c');
 		$this -> db -> join('goods as g', 'c.goods_id = g.id', 'left');
 		$this -> db -> where('c.user_id', $user_id);

@@ -50,7 +50,7 @@
               <td><input id="SelectAll" type="checkbox" onclick="select_all()" checked />
         全选</td>
               <td class="col2">图片</td>
-              <td>条码</td>
+              <td class="col2">条码</td>
               <td class="col3">商品</td>
               <td class="col4">单价（元）</td>
               <td class="col5">数量</td>
@@ -62,24 +62,21 @@
           <tbody>
     <?php foreach($carts as $c):?>
     <tr class="item" id="<?=$c['id']?>">
-              <td class="col1"><input onclick="setSelectAll()" id="subcheck" type="checkbox" name="cart_id" value="<?=$c['id']?>" checked/>
-        <input type="hidden" name="goods_id" value="<?=$c['goods_id']?>"/></td>
-              <td class="col2"><a href="<?=site_url('goods/view').'/'.$c['goods_id']?>"> <img width="60px" height="60px" src="/static/uploads/square/<?=$c['goods_img']?>"/> </a></td>
-              <td><?=$c['product_code']?></td><!--这个地方为什么呢？-->
-              <td class="col3"><a href="<?=site_url('goods/view').'/'.$c['goods_id']?>">
-                <?=$c['goods_name']?>
-                </a></td>
-              <td class="col4"><span id="price">￥<?=$c['goods_price']?>
-                </span></td>
-              <td class="col5"><a onclick="reduce(<?=$c['id']?>)" class="col5_jian">-</a>
-        <input onblur="number_change(<?=$c['id']?>)" name="amount" id="amount" class="amount" type="text" maxlength="2" value="<?=$c['amount']?>"/>
-        <input type="hidden" class="cartId" value="<?=$c['id']?>"/>
-        <a onclick="add(<?=$c['id']?>)">+</a></td>
-              <td class="col6"><span id="subtotal">￥<?=$c['subtotal']?>
-                </span></td>
-              <td class="col7"><textarea></textarea></td>
-              <td class="col8"><a onclick="del_cart(<?=$c['id']?>)">删除</a> <a onclick="join_collect(<?=$c['goods_id']?>)">收藏</a></td>
-            </tr>
+        <td class="col1">
+            <input onclick="setSelectAll()" id="subcheck" type="checkbox" name="cart_id" value="<?=$c['id']?>" checked/>
+          	<input type="hidden" name="goods_id" value="<?=$c['goods_id']?>"/></td>
+        <td class="col2"><a href="<?=site_url('goods/view').'/'.$c['goods_id']?>"> <img width="60px" height="60px" src="/static/uploads/square/<?=$c['goods_img']?>"/> </a></td>
+        <td class="col2"><?=$c['goods_code']?></td><!--这个地方为什么呢？-->
+        <td class="col3"><a href="<?=site_url('goods/view').'/'.$c['goods_id']?>"><?=$c['goods_name']?></a></td>
+        <td class="col4"><span id="price">￥<?=$c['goods_price']?></span>
+            <input type="hidden" name="price" value="<?=$c['goods_price']?>" /></td>
+        <td class="col5"><a onclick="reduce(<?=$c['id']?>)" class="col5_jian">-</a>
+        	<input onblur="number_change(<?=$c['id']?>)" name="amount" id="amount" class="amount" type="text" maxlength="2" value="<?=$c['amount']?>"/>
+        	<input type="hidden" class="cartId" value="<?=$c['id']?>"/><a onclick="add(<?=$c['id']?>)">+</a></td>
+        <td class="col6"><span id="subtotal">￥<?=$c['subtotal']?></span></td>
+        <td class="col7"><textarea class="remarks"></textarea></td>
+        <td class="col8"><a onclick="del_cart(<?=$c['id']?>)">删除</a> <a onclick="join_collect(<?=$c['goods_id']?>)">收藏</a></td>
+    </tr>
     <?php endforeach;?>
   </tbody>
         </table>

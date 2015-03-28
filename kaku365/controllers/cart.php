@@ -37,11 +37,13 @@ class Cart extends CI_Controller {
 		$address_id = $this -> input -> post('address_id');
 		$user = $this -> order_model -> get_delivery_address_by_id($address_id);
 		$goodss = array();
-		foreach ($carts as $c) {
-			$res = $this -> cart_model -> get_cart_by_id($c);
+		foreach ($carts as $item) {
+			$itemArr = explode('|', rtrim($item));
+			$res = $this -> cart_model -> get_cart_by_id(intval($itemArr[0]));
 			if ($res) {
 				$goods['id'] = $res['goods_id'];
 				$goods['amount'] = $res['amount'];
+				$goods['detail'] = isset($itemArr[1]) ? $itemArr[1] : '';
 				$goodss[] = $goods;
 			}
 		}

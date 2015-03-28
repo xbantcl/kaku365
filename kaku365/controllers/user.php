@@ -195,8 +195,8 @@ class User extends CI_Controller {
 		$this -> load -> model('order_model');
         $user_id = $this -> session -> userdata('id');
         $data['user'] = $this -> user_model -> getUserById($user_id);
-		$data['order_id'] = $order_id;
 		$data['order'] = $this -> order_model -> getOrder($order_id);
+		$data['order_id'] = date("YmdHis",strtotime($data['order']['created_at']));
 		$data['order_detail'] = $this -> order_model -> getOrderDetails($order_id);
 		$data['details_count'] = $this -> order_model -> getDetailsCount($order_id);
 		$this -> load -> view('user/user_order_detail', $data);
