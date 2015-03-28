@@ -1,0 +1,284 @@
+@charset "utf-8";
+/* CSS Document */
+
+* {
+	margin: 0;
+	padding: 0;
+}
+a {
+	text-decoration: none;
+}
+ul {
+	list-style-type: none;
+}
+/*后台登陆页面开始*/
+
+#login_box {
+	background: #fff;
+	width: 800px;
+	height: 400px;
+	margin: 100px auto;
+}
+#login_box h2 {
+	color: #ccc;
+}
+#login_box form {
+	width: 400px;
+	height: 300px;
+	background: #fafafa;
+	margin: 50px auto;
+}
+#login_box form ul {
+	list-style-type: none;
+}
+/*后台登陆页面结束*/
+
+table {
+	border-collapse: collapse;
+	font-size: 12px;
+}
+/*头部信息开始*/
+
+#mainhd {
+	background: url(../img/body_bg.png) repeat-x 0px 0px;
+}
+#header {
+	background: url(../img/bg_position.gif) no-repeat 0px 0px;
+	text-align: left;
+	width: 100%;
+	height: 91px;
+	position: relative;
+	z-index: 1;
+}
+#header h2 {
+	color: #069;
+	width: 120px;
+	height: 50px;
+	position: absolute;
+	top: 17px;
+	left: 21px;
+}
+/*头部导航开始*/
+
+#header ul {
+	height: 42px;
+	padding-left: 3px;
+	position: absolute;
+	z-index: 1;
+	top: 16px;
+	left: 153px;
+}
+#header ul li {
+	height: 42px;
+	font-size: 14px;
+	font-weight: 700;
+	line-height: 20px;
+	list-style-type: none;
+	float: left;
+	margin-left: 14px;
+}
+#header ul li a {
+	color: #069;
+	text-decoration: none;
+	height: 20px;
+	display: inline-block;
+	padding: 11px 14px 11px 6px;
+	margin-left: 5px;
+}
+#header ul li .link_a {
+	background: url(../img/button_bg.png) no-repeat right -42px;
+}
+#header ul .link_li {
+	background: url(../img/button_bg.png) no-repeat left 0px;
+}
+/*头部导航结束*/
+/*头部管理员信息开始*/
+
+#header ol {
+	background: url(../img/bg_position.gif) scroll 0px -91px;
+	max-width: 320px;
+	height: 28px;
+	padding-bottom: 29px;
+	position: absolute;
+	z-index: 1;
+	top: 0px;
+	right: 0px;
+}
+#header ol li {
+	text-align: center;
+	display: inline;
+	float: right;
+	margin: 7px 10px 0px 5px;
+	line-height: 20px;
+	color: #069;
+	background: url(../img/bg_position.gif) no-repeat -638px -96px;
+	padding-left: 4px;
+}
+#header ol li a {
+	color: #069;
+	text-decoration: none;
+}
+#header ol li a:hover {
+	color: #09F;
+}
+#header ol .adminid {
+	background: url(../img/bg_position.gif) no-repeat -350px -100px;
+	white-space: nowrap;
+	max-width: 150px;
+	height: 20px;
+	padding: 0px 0px 0px 24px;
+	margin-right: 4px;
+	overflow: hidden;
+}
+/*头部管理员信息结束*/
+
+/*头部信息结束*/
+/*左导航开始*/
+
+#nav_left {
+	background: url(../img/left.png) repeat-y left top;
+	width: 161px;
+	height: 100%;
+}
+#nav_left ul {
+	display: none;
+	width: 160px;
+	float: left;
+}
+#nav_left ul li {
+	float: left;
+	line-height: 20px;
+	list-style-type: none;
+	color: #7394A4;
+	width: 120px;
+	height: 20px;
+}
+#nav_left ul li a {
+	line-height: 20px;
+	text-decoration: none;
+	color: #7394A4;
+	background: url(../img/bg_position.gif) no-repeat -161px -170px;
+	display: block;
+	width: 120px;
+	height: 20px;
+	float: left;
+	padding: 4px 12px 4px 29px;
+}
+#nav_left ul li a:hover {
+	color: #09F;
+}
+/*左导航结束*/
+/*内容显示框开始*/
+/*内容显示框结束*/
+/*admin1_1开始*/
+
+.admin_page {
+	padding: 9px 20px 20px;
+}
+.admin_table {
+	padding: 9px 20px 20px;
+}
+.admin_table table {
+	font-size: 14px;
+	border-collapse: collapse;
+	border: 1px solid #ccc;
+	width: 100%;
+	text-align: center;
+}
+.admin_table table input {
+	margin: 6px 5px 0px 0px;
+}
+.admin_table table tr {
+	border: 1px solid #ccc;
+}
+.admin_table table thead tr {
+	background: #FFF3EE;
+	height: 35px;
+}
+.admin_table table tbody tr {
+	background: #fff;
+	height: 25px;
+}
+.admin_tableh table tbody tr td a {
+	color: #3385ff;
+}
+.admin_table table tbody tr td a:hover {
+	color: #f30;
+}
+.m_search {
+	font-size: 14px;
+	margin: 5px 0px;
+}
+/*admin1_1结束*/
+/*公共页码样式开始*/
+
+.page_btn {
+	float: right;
+	margin: 10px auto;
+}
+.page_btn span, .page_btn a, .page_btn b {
+	font-size: 14px;
+	font-family: Tahoma, Geneva, sans-serif;
+	float: left;
+	margin: 3px;
+	height: 25px;
+	line-height: 25px;
+	text-align: center;
+	border: 1px solid #E1E2E3;
+}
+.page_btn span {
+	color: #666;
+	padding: 0px 5px;
+	cursor: pointer;
+}
+.page_btn a {
+	width: 25px;
+	cursor: pointer;
+}
+.page_btn b {
+	width: 30px;
+	border: 0;
+}
+.page_btn span:hover, .page_btn a:hover {
+	background: #F3F7FF;
+	border: 1px solid #6282B3;
+}
+/*公共页码样式结束*/
+/*管理员修改密码样式开始*/
+.alterpass .inputgroup {
+	height: 40px;
+}
+.alterpass .inputgroup label {
+	text-align: right;
+	width: 70px;
+	display: block;
+	float: left;
+	margin-right: 10px;
+	font-size: 14px;
+	line-height: 40px;
+}
+.alterpass .inputgroup input {
+	width: 200px;
+	padding: 5px;
+	margin-top: 5px;
+	float: left;
+}
+.alterpass .inputgroup .passts {
+	float:left;
+	line-height: 40px;
+	margin-left: 5px;
+	font-size: 12px;
+	color: #BD0000;
+	display: none;
+}
+.alterpass .inputgroup .alterbottom {
+	padding: 10px;
+	margin-left: 80px;
+	width: 215px;
+	font-size: 13px;
+	background:#c5c5c5;
+	border: none;
+	outline: none;
+	cursor: pointer;
+}
+/*管理员修改密码样式结束*/

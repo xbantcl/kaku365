@@ -1,0 +1,132 @@
+@charset "utf-8";
+/* CSS Document */
+/*分类商品信息通用属性*/
+
+.list {
+	height: 454px;
+	width: 1200px;
+	margin-top: 10px;
+	border-top: 2px solid #E3393C;
+}
+/*左二级导航开始*/
+
+.nav_left {
+	height: 454px;
+	width: 100px;
+	float: left;
+}
+.nav_left h2 {
+	font-size: 16px;
+	height: 34px;
+	line-height: 34px;
+	background: #E3393C;
+	text-align: center;
+}
+.nav_left h2 a {
+	color: #fff;
+}
+/*.nav_left ul li {
+	font-size: 12px;
+	list-style-type: none;
+	overflow: hidden;
+}
+.nav_left ul li a {
+	font-weight: bold;
+	line-height: 14px;
+	height: 30px;
+	line-height: 30px;
+	margin: 2px 0px;
+	background: #f0f0f0;
+	color: #333;
+	text-align: center;
+	display: block;
+}
+.nav_left ul li a:hover {
+	background: #ddd;
+}*/
+/*
+.nav_left ul li a {
+	color:#666;
+	float:left;
+	width:100px;	
+}
+ .nav_left ul li strong{
+	float:right;
+	color:#ccc;}*/
+/*左二级导航结束*/
+/*分类商品信息开始*/
+/*产品边框开始*/
+
+.product {
+	float: left;
+	height: 454px;
+	width: 1100px;
+	background: #fff;
+	overflow: hidden;
+}
+.list .product dl {
+	float: left;
+	margin: 7px 0px 0px 25px;
+	height: 215px;
+	width: 150px;
+	border: 2px solid #fff;
+}
+.list .product dl:hover {
+	border: 2px solid #ECECEC;
+}
+/*产品图片开始*/
+
+.list .product dl dt {
+	height: 120px;
+	width: 150px;
+	background: #fff;
+}
+.list .product dl dt img {
+	height: 100px;
+	width: 100px;
+	margin: 10px 25px 10px 25px;
+}
+/*产品名称开始*/
+
+.product dl dd a {
+	color: #666;
+}
+.product dl dd a:hover {
+	text-decoration: underline;
+	color: #EC0007;
+}
+.t1 {
+	overflow: hidden;
+	height: 35px;
+	line-height: 17px;
+	margin-top: 5px;
+	text-align: center;
+}
+.t2 {
+	height: 25px;
+	font-size: 14px;
+	
+}
+.t2 b {
+	color: #F00;
+	font-family:Verdana;
+}
+.t2 del {
+	color: #999;
+}
+/*产品提交按钮开始*/
+
+.list .product dl dd input {
+	color: #333;
+	height: 25px;
+	border: 0;
+	width: 71px;
+	margin:0px 2px ;
+	float: left;
+	cursor: pointer;
+}
+.list .product dl dd input:hover {
+	background: #EC0007;
+	color: #fff;
+}
+/*分类商品信息结束*/

@@ -1,0 +1,261 @@
+@charset "utf-8";
+/* CSS Document */
+#content {
+	width:980px;
+	margin:0 auto;
+}
+/*左导航开始*/
+.nav_l {
+	margin:50px 0px;
+	float:left;
+	width:100px;
+	padding:10px;
+	border:1px solid #d7d7d7;
+	background:#F3F3F3;
+}
+.nav_l dl {
+	margin:20px 0px;
+}
+.nav_l dl dt {
+	font-weight:bold;
+	color:#333;
+	font-size:14px;
+}
+.nav_l dl dd {
+	margin:5px 0px;
+	text-align:center;
+}
+.nav_l dl dd a {
+	color:#555;
+}
+.nav_l dl dd a:hover {
+	color:#F30;
+}
+/*左导航结束*/
+
+/*管理中心右内容公共样式开始*/
+.c_right {
+	margin:50px 0px 0px 10px;
+	width:840px;
+	float:left;
+	color:#555;
+	background:#FBFBFB;
+}
+.c_right h3 {
+	font-size:16px;
+	width:100px;
+	margin:10px 20px;
+}
+.c_right ul {
+	list-style-type:none;
+}
+.c_right table {
+	font-size:14px;
+	border-collapse:collapse;
+	border:1px solid #ccc;
+	width:100%;
+	text-align:center;
+}
+.c_right table input {
+	margin:6px 5px 0px 0px;
+}
+.c_right table tr {
+	border:1px solid #ccc;
+}
+.c_right table thead tr {
+	background:#FFF3EE;
+	height:35px;
+}
+.c_right table tbody tr {
+	font-size:12px;
+	background:#fff;
+	height:25px;
+}
+.c_right table tbody tr td a {
+	color:#3385ff;
+}
+.c_right table tbody tr td a:hover {
+	color: #f30;
+}
+.m_search {
+	font-size:14px;
+	margin:5px 0px;
+}
+/*公共页码样式开始*/
+.page_btn {
+	float:right;
+	margin:10px auto;
+}
+.page_btn span, .page_btn a, .page_btn b {
+	font-size:14px;
+	font-family:Tahoma, Geneva, sans-serif;
+	float:left;
+	margin:3px;
+	height:25px;
+	line-height:25px;
+	text-align:center;
+	border:1px solid #E1E2E3;
+}
+.page_btn span {
+	color:#666;
+	padding: 0px 5px;
+	cursor:pointer;
+}
+.page_btn b {
+	width:30px;
+	border:0;
+}
+.page_btn span:hover, .page_btn a:hover {
+	background:#F3F7FF;
+	border:1px solid #6282B3;
+}
+/*公共页码样式结束*/
+/*管理中心右内容公共样式结束*/
+/*manager1_1商家名片开始*/
+.c_right ul li {
+	font-size:14px;
+	margin:10px 150px;
+}
+.c_col2 img {
+	height:200px;
+	width:300px;
+}
+.c_col3 input, .c_col4 input, .c_col5 input {
+	font-size:14px;
+	padding:2px;
+}
+.c_col5 input {
+	width:300px;
+}
+.c_col7 textarea {
+	width:500px;
+	height:200px;
+	max-width:500px;
+	max-height:300px;
+	margin-left:50px;
+}
+.c_col8 {
+	text-align:center;
+	clear:both;
+}
+.c_col8 input {
+	margin-right:30px;
+	height:30px;
+	width:60px;
+	font-size:14px;
+}
+/*manager1_1商家名片结束*/
+	
+/*manager1_2经营执照开始*/
+
+.c1_2 li img {
+	height:200px;
+	width:300px;
+}
+/*manager1_2经营执照结束*/
+	
+/*manager1_3文章发布开始*/
+
+
+.article {
+	height:300px;
+	width:500px;
+	background:#9CC;
+}
+/*manager1_3文章发布结束*/
+	
+	
+	
+	
+/*manager1_4文章管理开始*/	
+	
+/*manager1_4文章管理结束*/
+
+
+
+
+/*manager1_5投诉信息开始*/	
+	
+/*manager1_5投诉信息结束*/
+
+
+/*manager1_5投诉详情开始*/	
+.complain_info textarea {
+	min-height:300px;
+	min-width:500px;
+	max-height:600px;
+	max-width:500px;
+	height:300px;
+	width:500px;
+}
+/*manager1_5投诉详情结束*/
+
+
+/*manager2_1新增商品开始*/
+.product_img {
+	list-style-type:none;
+}
+.product_img li {
+	margin:4px;
+	padding:2px;
+	float:left;
+	border:1px solid #ccc;
+}
+.product_img li img {
+	margin-left:80px;
+	height:80px;
+	width:80px;
+}
+/*manager2_1新增商品结束*/
+
+
+/*manager2_2管理商品开始*/	
+.manage_product td img {
+	border:0px;
+	margin-top:4px;
+	height:50px;
+	width:50px;
+}
+/*manager2_2管理商品结束*/
+
+
+
+/*manager2_3新增品牌开始*/	
+	
+/*manager2_3新增品牌结束*/
+
+
+/*manager2_4管理品牌开始*/	
+	
+/*manager2_4管理品牌结束*/
+
+
+
+/*manager4_2分类管理开始*/	
+
+.classify dl {
+	border:1px solid #ccc;
+	padding:10px;
+}
+.classify dl a{
+	margin-left:5px;}
+.classify dl strong{
+	
+	font-size:16px;
+	height:20px;
+	line-height:20px;
+	width:20px;
+	background:#ccc;
+	display:inline-block;
+	text-align:center;
+	cursor:pointer;}
+.classify dl dd {
+	margin-left:100px;
+}	
+.classify_3 ol{
+	list-style-type:none;
+	margin-left:100px;}
+
+.classify_3 ol li input{
+	width:200px;}
+/*manager4_2分类管理结束*/

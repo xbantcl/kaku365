@@ -1,0 +1,531 @@
+@charset "utf-8";
+/* CSS Document */
+
+* {
+	margin: 0;
+	padding: 0;
+}
+img {
+	border: 0px;
+}
+a {
+	text-decoration: none;
+	cursor: pointer;
+}
+body {
+	width: 1200px;
+	font-size: 12px;
+	margin: 0 auto;
+}
+h1 {
+	font-size:24px;
+	color: #666;
+}
+table tbody{
+	font-family:Verdana, Geneva, sans-serif;}
+/*头部搜索注册开始*/
+#header {
+	height: 40px;
+	width: 1200px;
+	line-height: 40px;
+	border-top: 5px solid #fff;
+	border-bottom: 5px solid #fff;
+}
+#header h1 {
+	float: left;
+	height: 40px;
+	width: 250px;
+	background: url(../images/shop_logo.jpg) no-repeat center center;
+}
+#header h1 a {
+	height: 40px;
+	width: 250px;
+	text-indent: -9999px;
+	display: block;
+}
+#header_key {
+	margin-left: 100px;
+	width: 630px;
+	height: 40px;
+	float: left;
+}
+#key_text {
+	float: left;
+	font-size: 14px;
+	height: 38px;
+	border: 1px solid #3385FF;
+	width: 400px;
+	line-height: 38px;
+	color: #666;
+}
+#key_sub {
+	float: left;
+	font-size: 16px;
+	letter-spacing: 10px;
+	text-indent: 3px;
+	background: #3385FF;
+	color: #FFF;
+	height: 40px;
+	border: 0;
+	width: 80px;
+	cursor: pointer;
+}
+#key_sub:hover {
+	background: #2D78F4;
+}
+#header span {
+	float: right;
+}
+#header span a {
+	text-decoration: none;
+	letter-spacing: 3px;
+	margin: 5px;
+	color: #06F;
+}
+#header span a:hover {
+	color: #E4393C;
+}
+/*头部搜索注册结束*/
+/*店招图片展示开始*/
+
+#adv dl {
+	font-size: 14px;
+	height: 250px;
+	color: #666;
+	overflow: hidden;
+}
+#adv dl dt a {
+	display: block;
+	width: 550px;
+	text-decoration: none;
+}
+#adv dl dt {
+	width: 550px;
+	float: left;
+	padding: 2px;
+}
+#adv dl dt img {
+	height: 240px;
+	width: 550px;
+}
+#adv dl dd {
+	padding: 12px 0px 3px 15px;
+	width: 600px;
+	float: left;
+}
+#adv dl dd a {
+	color: #3385FF;
+}
+#adv dl dd p {
+	overflow: hidden;
+	margin-top: 10px;
+	text-indent: 32px;
+	letter-spacing: 2px;
+	line-height: 24px;
+}
+#adv dl dd span {
+	margin-left: 20px;
+}
+/*店招图片展示结束*/
+/*主页导航条开始*/
+
+#nav {
+	position: relative;
+	background: #E64346;
+	height: 40px;
+	width: 1200px;
+	font-weight: bold;
+	text-align: center;
+	color: #fff;
+	z-index: 9;
+}
+#nav h2 {
+	font-size:18px;
+	float: left;
+	width: 200px;
+	height: 40px;
+	line-height: 40px;
+}
+#nav ul li {
+	list-style-type: none;
+	float: left;
+	height: 40px;
+	width: 100px;
+}
+#nav ul li a {
+	font-size: 16px;
+	line-height: 40px;
+	height: 40px;
+	width: 100px;
+	display: block;
+	text-decoration: none;
+	color: #fff;
+}
+#js_nav li a:hover {
+	color: #FFFFFF;
+	background-color: #CD2A2C;
+}
+/*店内搜索开始*/
+
+#nav_search {
+	float: right;
+	width: 300px;
+	height: 40px;
+}
+#nav_search #tex {
+	border: 2px solid #CD2A2C;
+	font-size: 14px;
+	line-height: 40px;
+	color: #666;
+	float: left;
+	height: 36px;
+	width: 230px
+}
+#nav_search #sub {
+	color: #fff;
+	background: #E13336;
+	cursor: pointer;
+	font-size: 16px;
+	float: left;
+	height: 40px;
+	width: 66px;
+	border: 2px solid #CD2A2C;
+}
+/*店内搜索结束*/
+/*购物车开始*/
+
+#box {
+	font-size:14px;
+	float: right;
+	height: 40px;
+	line-height: 40px;
+	width: 100px;
+	background: #f80 url(../images/shop.png) no-repeat 5% center;
+}
+#box a {
+	
+	margin-left:15px;
+	cursor: pointer;
+	color: #fff;
+}
+
+/*购物车结束*/
+/*购物车内容开始*/
+
+#box_content {
+	margin-top: 40px;
+	position: absolute;
+	right: 2px;
+	width: 340px;
+	height: 300px;
+	background: #fff;
+	display: none;
+}
+#box_content ul {
+	background: #fff;
+	border: 1px solid #ccc;
+	width:340px;
+
+}
+#box_content ul li {
+	border-top: 1px solid #E1E2E3;
+	height: 70px;
+	width: 320px;
+	list-style: none;
+}
+#box_content ul li:hover {
+	background: #F1F1F1;
+}
+#box_content ul li h4 a {
+	background: #fff;
+	margin: 5px;
+	border: 1px solid #ccc;
+	height: 55px;
+	width: 55px;
+	float: left;
+}
+#box_content ul li h4 a img {
+	height: 50px;
+	width: 50px;
+	border: 0px;
+}
+#box_content ul li p {
+	padding: 5px 0px 0px 5px;
+	text-align: left;
+	width: 120px;
+	height: 50px;
+	float: left;
+}
+#box_content ul li p a {
+	margin-top: 8px;
+	color: #666;
+	width: 120px;
+	font-weight: normal;
+	height: 20px;
+	line-height: 14px;
+	font-size: 12px;
+	display: inline-block;
+}
+#box_content ul li p a:hover {
+	color: #E4393C;
+	text-decoration: underline;
+}
+#box_content ul li span {
+	font-family:Verdana, Geneva, sans-serif;
+	font-size:12px;
+	height: 65px;
+	line-height: 65px;
+	color: #666;
+	float: left;
+
+}
+#box_content ul li span strong {
+	
+	color: #e4393c;
+}
+#box_content ul li span b {
+	color: #06F;
+	cursor: pointer;
+	font-weight: normal;
+	text-align: right;
+	margin-left: 8px;
+}
+#box_content ul li span b:hover {
+	text-decoration: underline;
+}
+/*购物车结果开始*/
+
+#result {
+	background: #F4F4F4;
+	height: 70px;
+	width: 340px;
+	border: 1px solid #ccc;
+	color: #666;
+	font: 12px/200% Arial, Verdana, "宋体";
+}
+#result p {
+	text-align: right;
+}
+#result p span {
+	color: #e4393c;
+	font-size:16px;
+	font-weight:bold;
+}
+#result p b {
+	margin-right: 15px;
+	font-size: 18px;
+	font-weight: bold;
+	color: #e4393c;
+}
+#result a {
+	background: #E50007;
+	display: inline-block;
+	height: 30px;
+	width: 120px;
+	margin: 6px 0px 0px 180px;
+	color: #FFF;
+	text-align: center;
+	line-height: 30px;
+}
+#br {
+	min-height:300px;
+}
+/*购物车结果结束*/
+/*购物车内容结束*/
+/*主页导航条结束*/
+/*二级导航开始*/
+
+#js_divide {
+	position: absolute;
+	z-index: 9;
+}
+.divide {
+	float: left;
+	display: none;
+	width: 1194px;
+	background: #FFF;
+	border: 3px solid #E64346;
+	border-top: 0px;
+	border-bottom: 5px solid #E64346;
+}
+.divide ul {
+	float: left;
+	list-style-type: none;
+}
+.divide li {
+	padding:0px 12px 0px 12px;
+	width:373px;
+	height:80px;
+	float: left;
+	border-bottom: 1px dashed #ccc;
+	border-right: 1px solid #ccc;
+}
+.divide li h3 {
+	width:360px;
+	margin:5px;
+	font-size: 12px;
+	float: left;
+}
+.divide li h3 a {
+	color:#666;
+	text-decoration: none;
+}
+.divide li h3 a:hover {
+	color:#00a3cc;
+}
+.divide p {
+	margin-left:35px;
+	float: left;
+}
+.divide p a {
+	line-height: 18px;
+	list-style: none;
+	margin-right: 6px;
+	color: #5B5959;
+}
+.divide p a:hover {
+	color: #F00;
+}
+/*二级导航结束*/
+/*底部信息开始*/
+
+#footer {
+	height: 70px;
+	width: 1200px;
+	padding-top: 30px;
+	clear: both;
+}
+#footer p {
+	line-height: 20px;
+	text-align: center;
+	color: #666;
+}
+#footer p a {
+	margin: 5px;
+	color: #666;
+	text-decoration: none;
+}
+#footer p a:hover {
+	text-decoration: underline;
+	color: #C00;
+}
+/*底部信息结束*/
+
+/*会员注册页面开始*/
+.login {
+	text-align:right;
+	padding-right:10px;
+
+}
+.login a{
+	margin:5px;
+	letter-spacing:2px;
+	font-weight:bold;
+	color:#3385ff;}
+.register {
+	margin:20px 0px;
+	min-height:500px;
+	background:#fafafa;
+}
+.register h2 {
+	font-size:24px;
+	letter-spacing:10px;
+	width:600px;
+	margin:0 auto;
+	color:#333;
+	text-align:center;
+	padding:20px 0px;
+}
+.register ul {
+	list-style-type:none;
+}
+.register ul li {
+	width:680px;
+	margin:10px auto;
+}
+.register ul li strong {
+	color:#555;
+	font-size:16px;
+}
+.register ul li input {
+	font-size:16px;
+	color:#666;
+	line-height:40px;
+	padding-left:5px;
+	font-family: arial, "宋体";
+	border:1px solid #ccc;
+	height:40px;
+	width:300px;
+}
+/*会员注册图标样式开始*/
+.regName {
+	background:#fff url(../images/one1.jpg) no-repeat 98% center;
+}
+.regPassword {
+	background:#fff url(../images/one2.jpg) no-repeat 98% center;
+}
+.regPine {
+	background:#fff url(../images/one3.jpg) no-repeat 98% center;
+}
+
+.reg_sub {
+	width:600px;
+	margin:50px auto 0px auto;
+	text-align:center;
+}
+#register_sub {
+	cursor:pointer;
+	font-size:16px;
+	height:40px;
+	width:200px;
+	border:1px solid #ccc;
+	background:#EC0007;
+	color:#fff;
+}
+/*会员注册页面结束*/
+/*会员登录开始*/
+.member_login{
+padding-left:300px;
+padding-top:20px;}
+
+/*店铺首页侧边导航开始*/
+.nav_left {
+	margin: 0px auto;
+	height: auto;
+}
+.nav_left  ul {
+	list-style: none;
+}
+.nav_left a {
+	color: #666;
+}
+.nav_left .menu-one li {
+	height: auto;
+	overflow: hidden;
+	border-bottom: 1px solid #eee;
+	
+}
+
+.nav_left .menu-one .header {
+	height: 35px;
+	margin: 2px 0px;
+	text-indent:10px;
+	letter-spacing:1px;
+	cursor: pointer;
+	line-height: 35px;
+	font-weight: bold;
+}
+
+.nav_left .menu-one .header span {
+	display: block;
+}
+.nav_left .menu-one .header .txt {
+	
+	float: left;
+}
+.nav_left .menu-one .header .txt a{
+	display:block;}
+.nav_left .menu-one .header .txt a:hover{
+	color:#00a3cc;}
+/*店铺首页侧边导航结束*/
+

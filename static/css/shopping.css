@@ -1,0 +1,230 @@
+@charset "utf-8";
+/* CSS Document */
+/* 购物车内容开始*/
+h2 {
+	margin:10px;
+	font-size:16px;
+}
+table {
+	border:1px solid #B5B5B5;
+	width:1200px;
+	color:#666;
+	border-collapse: collapse;
+	border-spacing: 0px;
+}
+thead {
+	border-top:2px solid #ccc;
+	background:#F6F6F6;
+	text-align:center;
+	font-size:16px;
+	line-height:40px;
+	height:40px;
+	font-weight:bold;
+}
+#SelectAll {
+	margin-right:19px;
+}
+.item {
+	height:80px;
+	border-bottom:1px solid #ccc;
+}
+.col1 {
+	text-align:center;
+	width:100px;
+}
+.col1 input {
+	margin:0px 0px 0px 20px;
+	float:left;
+}
+.col2 {
+	width:100px;
+	text-align:center;
+}
+.col3 {
+	word-wrap: break-word;
+	word-break: break-all;
+	width:200px;
+	text-align:center;
+}
+.col3 a {
+	line-height:18px;
+	color:#3385FF;
+}
+.col3 a:hover {
+	text-decoration:underline;
+}
+.col4 {
+	text-align:center;
+	width:100px;
+}
+.col4 span {
+	color:#D70000;
+    font-size: 14px;
+	font-family:Verdana, Geneva, sans-serif;
+}
+.col5 {
+	font-family: tahoma, Arial;
+	width:100px;
+}
+.col5 input {
+	margin-left:6px;
+	float:left;
+	width:35px;
+	height:20px;
+	line-height:20px;
+	border:1px solid #B2B2B2;
+	text-align:center;
+}
+.col5 a {
+	background:#EEE;
+	color:#6A6A6A;
+	float:left;
+	margin-left:6px;
+	width:20px;
+	height:20px;
+	line-height:14px;
+	display:inline-block;
+	border:1px solid #B2B2B2;
+	font-size:18px;
+	text-align:center;
+}
+.col5 a:hover {
+	color:#353535;
+	background:#F8F8F8;
+}
+.col5 .col5_jian {
+	font-size:28px;
+}
+.col6 {
+	text-align:center;
+	width:100px;
+}
+.col6 span {
+	font-size:16px;
+	color:#D70000;
+	font-family: Verdana, Geneva, sans-serif;
+}
+.col7 {
+	width:210px;
+}
+.col7 textarea {
+	resize: none;
+	display:inline;
+	outline: medium none;
+	width: 208px;
+	height: 60px;
+	border: 1px solid #DBDBDB;
+	color: #666;
+	text-indent: 0px;
+	font-size: 14px;
+	line-height: 22px;
+}
+.col8 {
+	text-align:center;
+	width:100px;
+}
+.col8 a {
+	color:#03F;
+	margin:0px 2px 0px 2px;
+}
+.col8 a:hover {
+	color:#D70000;
+}
+/* 购物车内容结束*/
+/*结算栏开始*/
+
+.clearing {
+	padding-right:20px;
+	font-size:14px;
+	color:#666;
+	background:#F7F7F7;
+	text-align:right;
+	border:1px solid #ccc;
+	height:40px;
+	padding-top:10px;
+}
+.clearing a {
+	color:#fff;
+	height:30px;
+	width:150px;
+	line-height:30px;
+	margin:0px 0px 0px 10px;
+	text-align:center;
+	float:left;
+	background:#E50007;
+}
+.clearing span {
+	margin:0px 5px 0px 5px;
+	color:#DB261F;
+	font-size: 22px;
+	font-family: Verdana, Geneva, sans-serif;
+}
+/*结算栏结束*/
+/*收货地址开始*/
+
+.receiver_l{
+	float:left;
+	width:1178px;
+	padding:10px;
+	color:#666;
+	background:#F7F7F7;
+	border:1px solid #ccc;
+	margin-bottom:10px;
+}
+
+.receiver_l h4{
+	cursor:pointer;
+	width:100px;
+	margin:5px 0px;
+	color:#37f;}
+.receiver_l ol {
+	list-style-type:none;
+	display:none;
+}
+.receiver_l ol li {
+	margin-top:5px;
+	height:20px;
+	line-height:20px;
+}
+.receiver_l ol li input {
+	margin:2px 5px 2px 0px;
+}
+.receiver_l ol li a {
+	margin-left:10px;
+	color:#37F;
+}
+.receiver_l ol li a:hover {
+	text-decoration:underline;
+}
+.receiver_l ol li b{
+	margin:0 5px;}
+#new_add_content{
+	display:none;}
+.add_sub{
+	padding:2px;
+	border:0px;
+	background:#E50007;
+	color:#fff;
+	cursor:pointer;}
+/*收货地址结束*/
+
+/*提交按钮开始*/
+.btn_s {
+	width:395px;
+	margin-left:auto;
+	clear:both;
+}
+.btn_s a {
+	cursor:pointer;
+	background:#E50007;
+	color:#fff;
+	display:inline-block;
+	line-height: 33px;
+	text-align: center;
+	font-size: 16px;
+	font-family: "微软雅黑";
+	margin-left:50px;
+	height:33px;
+	width:100px;
+}
+/*提交按钮结束*/

@@ -1,0 +1,314 @@
+@charset "utf-8";
+/* CSS Document */
+/*list_content_start*/
+#content {
+	width:1200px;
+}
+#content h2{
+	height: 300px;
+	color: #666;
+}
+/*选择器开始*/
+#select {
+	float:left;
+	margin-bottom:5px;
+	border:1px solid #ccc;
+	width:1198px;
+}
+#select a {
+	color:#666;
+}
+#select a:hover {
+	color:#00A3CC
+}
+/*选择器指示条开始*/
+#hint {
+	margin-top:10px;
+	height:30px;
+	line-height:30px;
+	border:1px solid #ccc;
+}
+#hint p {
+	padding-left:20px;
+	background:url(../images/bg.jpg) no-repeat 170px;
+}
+#hint p b {
+	margin:0px 30px 0px 30px;
+}
+#hint p span {
+	margin:0px 10px 0px 10px;
+	color:#f60;
+}
+#hint p span em {
+	font-style:normal;
+	color:#666;
+}
+#hint p span i {
+	font-style:normal;
+	margin:0px 5px 0px 5px;
+}
+#hint p span strong {
+	margin:0px 10px 0px 5px;
+	cursor:pointer;
+	font-size:14px;
+	padding: 7px;
+	background: url(../images/btn.jpg) no-repeat center center;
+}
+/*选择器指示条结束*/
+/*品牌筛选开始*/
+#brand {
+	height:60px;
+}
+#brand h4, #price h4 {
+	margin-top:15px;
+	float:left;
+	text-align:center;
+	width:100px;
+	font-size:14px;
+	color:#545454;
+}
+#brand div {
+	overflow:hidden;
+	margin-top:15px;
+	height:60px;
+	float:left;
+	border:1px solid #ccc;
+	width:1085px;
+	background:#F9F9F9;
+}
+#brand p {
+	width:1000px;
+	float:left;
+	line-height:30px;
+}
+#brand p a {
+	margin-left:5px;
+	display:block;
+	margin-right: 20px;
+	height:30px;
+	float:left;
+}
+#brand span{
+	float:right;
+	margin-right:15px ;}
+#brand span img {
+	cursor:pointer;
+	margin:10px 0px 0px 15px;
+	border:0;
+}
+/*品牌筛选结束*/
+/*价格筛选开始*/
+#price {
+	float:left;
+	padding-top:10px;
+	height:60px;
+}
+#price div {
+	float:left;
+	height:60px;
+	line-height:60px;
+	border:1px solid #ccc;
+	width:1085px;
+	background:#F9F9F9;
+}
+#price div a {
+	margin-left:10px;
+}
+/*价格筛选结束*/
+/*分类筛选开始*/
+#classify {
+	float:left;
+	margin-top:9px;
+	background:#FAFAFA;
+	border:1px solid #CCC;
+}
+#classify h4 {
+	margin-top:10px;
+	float:left;
+	text-align:center;
+	width:100px;
+	font-size:14px;
+	color:#545454;
+}
+#classify div {
+	height:50px;
+	margin:8px 5px 5px 5px;
+	border:1px solid #CCC;
+	background:#fff;
+	width:1080px;
+	float:left;
+}
+#classify div p {
+	overflow:hidden;
+	float:left;
+	width:1000px;
+	line-height:50px;
+}
+#classify div p a {
+	border:1px dashed #ccc;
+	border-left:0;
+	border-top:0;
+	height:49px;
+	width:150px;
+	float:left;
+	text-align:center;
+}
+#classify div span img {
+	cursor:pointer;
+	margin:10px 0px 0px 15px;
+	border:0;
+}
+/*分类筛选结束*/
+/*选择器结束*/
+/*排列方式开始*/
+#sort {
+	float:left;
+	border-top:5px solid #DBDBDB;
+	height:40px;
+	line-height:40px;
+	width:1200px;
+	background:#F6F6F6;
+	color:#666;
+}
+#sort p {
+	float:left;
+	width:110px;
+	text-align:center;
+}
+/*价格销量新品排序开始*/
+	#sort_auto {
+	height:40px;
+	width:200px;
+	float:left;
+}
+#sort_auto a img {
+	border:0;
+	margin:8px 0px 0px 5px;
+}
+/*价格排序结束*/
+	/*搜索结果数字显示*/
+	#number {
+	margin-left:400px;
+	width:150px;
+	float:left;
+}
+#number b {
+	color:#F67666;
+}
+/*搜索结果数字显示*/
+	
+	
+/*上页下页开始*/
+	#page {
+	height:40px;
+	line-height:40px;
+	width:200px;
+	float:right;
+}
+#page span {
+	margin-right:8px;
+	float:left;
+}
+#page a img {
+	border:0;
+	margin-top:8px;
+}
+/*上页下页结束*/
+
+/*商品列表信息开始*/
+/*商品dl通用样式开始*/
+#main {
+	float:left;
+}
+#goods{
+	width: 1200px;
+	overflow: auto;
+}
+.adl {
+	height:330px;
+	width:220px;
+	float:left;
+	border:2px solid #fff;
+	margin:8px;
+}
+.adl:hover {
+	border:2px solid #E1E2E3;
+}
+.adl dt img{
+	height:220px;
+	width:220px;
+	border:0;}
+.adl dd {
+	margin-top:5px;
+}
+.s1 {
+	line-height:16px;
+	height:30px;
+}
+.s1 a {
+	color:#666;	
+}
+.s1 a:hover{
+	color:#ec0007;
+	text-decoration:underline;}
+.s2 {
+	font-size:14px;
+	font-family: Verdana, Geneva, sans-serif;
+	color:#F00;
+	height:15px;
+	padding-top:5px;
+}
+.s3 {
+	background:red;
+}
+.s3 input {
+	cursor:pointer;
+	float:left;
+	border:0;
+	height:30px;
+	width:100px;
+	margin:4px;
+	color:#333;
+}
+.s3 input:hover {
+	color:#fff;
+	background:#EC0007;
+}
+
+/*商品dl通用样式结束*/
+/*list_content_end*/
+/*页面下方页码开始*/
+	#page_down {
+	float:right;
+}
+#page_down span, #page_down a, #page_down b {
+	font-size:14px;
+	font-family:Tahoma, Geneva, sans-serif;
+	float:right;
+	margin:3px;
+	height:25px;
+	line-height:25px;
+	text-align:center;
+	border:1px solid #E1E2E3;
+}
+#page_down span {
+	color:#666;
+	padding: 0px 5px;
+	cursor:pointer;
+}
+#page_down a {
+	color:#666;
+	width: 25px;
+	cursor: pointer;
+}
+#page_down b {
+	color:#666;
+	font-weight:100;
+	width:30px;
+	border:0;
+}
+#page_down span:hover, #page_down a:hover{
+	background:#F3F7FF;
+	border:1px solid #6282B3;}
+}
+/*页面下方页码结束*/

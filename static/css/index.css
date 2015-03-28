@@ -1,0 +1,130 @@
+@charset "utf-8";
+/* CSS Document */
+
+* {
+	padding: 0;
+	margin: 0;
+	text-decoration: none;
+}
+body {
+	font-size: 12px;
+}
+/*join_start*/
+
+#join {
+	height: 25px;
+	padding-right: 20px;
+}
+#join a {
+	color: #06F;
+	margin: 5px;
+	letter-spacing: 3px;
+	float: right;
+}
+#join a:hover {
+	color: #E4393C;
+}
+/*join_start*/
+
+#key {
+	margin: 200px auto;
+	width: 680px;
+}
+/*LOGO_start*/
+
+#logo {
+	background: url(../images/logo.jpg) no-repeat center center;
+	width: 332px;
+	height: 55px;
+	margin: 0px 0px 50px 150px;
+}
+#logo a {
+	height: 55px;
+	width: 332px;
+	text-indent: -9999px;
+	display: block;
+}
+/*LOGO_end*/
+/*keyword_start*/
+
+#keyword {
+	width: 710px;
+	line-height: 40px;
+	height: 40px;
+}
+#keyword input {
+	float: left;
+}
+#txt {
+	font-size: 14px;
+	color: #666;
+	height: 38px;
+	border: 1px solid #3385FF;
+	width: 580px;
+	line-height: 40px;
+}
+#sub {
+	font-size: 18px;
+	background: #3385FF;
+	color: #fff;
+	height: 40px;
+	border: 0px;
+	width: 100px;
+	cursor: pointer;
+}
+#sub:hover {
+	background: #2D78F4;
+}
+/*keyword_end*/
+/*底部信息开始*/
+
+#footer {
+	font-family: Tahoma, Geneva, sans-serif;
+	padding-top: 30px;
+	clear: both;
+}
+#footer p {
+	line-height: 20px;
+	text-align: center;
+	color: #666;
+}
+#footer p a {
+	margin: 5px;
+	color: #666;
+	text-decoration: none;
+}
+#footer p a:hover {
+	text-decoration: underline;
+	color: #C00;
+}
+/*底部信息结束*/
+
+.register {
+	border: solid 2px grey;
+	margin: 70px auto;
+	width: 400px;
+	padding: 100px;
+	border-radius: 10px;
+}
+.register input {
+	width: 420px;
+	height: 30px;
+	margin-bottom: 10px;
+	font-family: microsoft yahei ui light;
+	border-radius: 5px;
+	padding-left: 10px;
+}
+.register img {
+	border: solid 1px gray;
+	border-radius: 5px;
+	margin-bottom: 25px;
+}
+.register p {
+	font-size: 25px;
+	text-align: center;
+	letter-spacing: 50px;
+	border-bottom: solid 2px gray;
+	margin-top: -75px;
+	margin-bottom: 30px;
+	width: 420px;
+}

@@ -1,0 +1,95 @@
+@charset "utf-8";
+/* CSS Document */
+
+h2 {
+	font-size:18px;
+	color: #333;
+}
+#search_content {
+	width: 840px;
+	margin: 0 auto;
+}
+#search_content dl {
+	width: 840px;
+	margin: 0 auto;
+	font-size: 14px;
+	border-bottom: 2px solid #3385FF;
+	height: 220px;
+	color: #666;
+}
+#search_content dl dt a {
+	padding: 7px;
+	display: block;
+	width: 400px;
+	height: 200px;
+	text-decoration: none;
+}
+#search_content dt {
+	height: 200px;
+	width: 400px;
+	float: left;
+}
+#search_content dt img {
+	height: 200px;
+	width: 400px;
+}
+#search_content dd {
+	padding: 5px 0px 3px 0px;
+	width: 400px;
+	float: right;
+}
+#search_content dd a {
+	color: #3385FF;
+}
+#search_content dd p {
+	text-indent: 24px;
+	line-height: 20px;
+	overflow: hidden;
+	height: 100px;
+}
+#search_content dd span {
+	margin-left: 20px;
+}
+/*页码开始*/
+
+#page_btn {
+	float: right;
+	margin: 10px auto;
+}
+#page_btn span,
+#page_btn a,
+#page_btn b {
+	font-size: 14px;
+	font-family: Tahoma, Geneva, sans-serif;
+	float: left;
+	margin: 3px;
+	height: 25px;
+	line-height: 25px;
+	text-align: center;
+	border: 1px solid #E1E2E3;
+}
+#page_btn span {
+	color: #666;
+	padding: 0px 5px;
+	cursor: pointer;
+}
+#page_btn a {
+	min-width: 25px;
+	cursor: pointer;
+}
+.current {
+	width: 25px;
+	cursor: pointer;
+	color: red;
+	font-weight: bold;
+}
+#page_btn b {
+	width: 30px;
+	border: 0;
+}
+#page_btn span:hover,
+#page_btn a:hover {
+	background: #F3F7FF;
+	border: 1px solid #6282B3;
+}
+/*页码结束*/
