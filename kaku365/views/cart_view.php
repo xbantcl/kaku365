@@ -86,10 +86,22 @@
 
 
 <?php else:?>
-<h1 align="center">您的购物车是空的哦</h1>
+<div class="cart-empty">
+<div class="message">
+	<ul>
+		<li class="txt">
+			购物车空空的哦~，去看看心仪的商品吧~
+		</li>
+		<li>
+			<a href="/search/index">去购物></a>
+		</li>
+	</ul>
+</div>
+</div>
 <?php endif;?>
 <!--购物车列表结束--> 
 <!--收货人信息开始-->
+<?php if (!empty($carts)) :?>
 <div class="receiver_l">
           <h4 id="choose_add">选择收货地址</h4>
           <?php if(!empty($address)):?>
@@ -140,6 +152,7 @@
 <!--购物车提交按钮开始-->
 <div class="btn_s"> <a onclick="join_order(<?=$shop_id?>)"> 提交订单 </a> <a href="<?=site_url('shop/index/').'/'.$shop_id ?>"> 继续购物 </a> </div>
 <!--购物车提交按钮开始结束--> 
+<?php endif;?>
 <!--底部信息开始-->
 <?php require_once ('common/common_footer.php'); ?>
 <!--底部信息结束-->

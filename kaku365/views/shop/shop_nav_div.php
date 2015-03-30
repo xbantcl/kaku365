@@ -9,7 +9,7 @@
 	<!--购物车开始-->
 	<div id="box">
 		<?php if(!empty($user)):?>
-		<a href="/cart">购物车</a><b><?= $carts_count['number']?$carts_count['number']:''?></b>
+		<a href="/cart">购物车</a><b><?= $carts_count['count']?$carts_count['count']:''?></b>
 		<?php else: ?>
 		<a href="/user/login">购物车</a>
 		<?php endif; ?>

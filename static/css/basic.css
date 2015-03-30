@@ -529,3 +529,40 @@ padding-top:20px;}
 	color:#00a3cc;}
 /*店铺首页侧边导航结束*/
 
+/*购物车页面*/
+.cart-empty {
+	height:98px;
+	padding:80px 0 120px;
+	color:#333
+}
+.cart-empty .message {
+	height:98px;
+	padding-left:440px;
+	background:url(../images/no-login-icon.png) 350px 22px no-repeat;
+}
+.cart-empty .message p {
+	line-height:98px;
+}
+
+.cart-empty .message ul {
+	padding-top:23px;
+}
+.cart-empty .message li {
+	line-height:26px;
+}
+
+.cart-empty .message .txt {
+	font-size:14px;
+}
+
+ol, ul {
+	list-style: none;
+}
+
+a:link {
+	color: #990033;
+}
+
+a:hover {
+	color: #990033;
+}

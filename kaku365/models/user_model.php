@@ -170,6 +170,7 @@ class User_model extends MY_Model {
 	public function get_carts_count_by_id($user_id){
 		$this -> db -> select('sum(amount) as number');
 		$this -> db -> select('sum(subtotal) as total');
+		$this -> db -> select('count(id) as count');
 		$this -> db -> from('cart');
 		$this -> db -> where('user_id', $user_id);
 		$this -> db -> where('status','1');

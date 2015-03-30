@@ -12,6 +12,12 @@
 
 			<?php foreach($s_category as $s):?>
 			<?php if($Goods['category2']==$s['id']):?>
+			<?php echo "<a href=\"/search/filter?cateid=".$s['id']."&shop_id=".$shop['id']."\" class=\"lastpositon\">{$s['name']}</a> >";?>
+			<?php endif;?>
+			<?php endforeach;?>
+			
+			<?php foreach($th_category as $s):?>
+			<?php if($Goods['category3']==$s['id']):?>
 			<?php echo "<a href=\"/search/filter?cateid=".$s['id']."&shop_id=".$shop['id']."\" class=\"lastpositon\">{$s['name']}</a>";?>
 			<?php endif;?>
 			<?php endforeach;?>
