@@ -241,6 +241,25 @@ $(function() {
 		}
 	});
 	
+	/*
+	 * 更新用户信息
+	 */
+	$('#p_sub').click(function() {
+	    $.ajax({
+	        type: "POST",
+	        dataType: "text",
+	        url: '/user/update_data',
+	        data: $('#userInfo').serialize(),
+	        success: function (result) {
+	    		if (result >0) {
+	    			alert('修改成功.');
+	    		}
+	        },
+	        error: function(data) {
+	            alert("error:"+data.responseText);
+	         }
+	    });
+	})
 });
 
 function show_menu($id) {

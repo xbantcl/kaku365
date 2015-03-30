@@ -1,6 +1,6 @@
 <div class="p_data" id="r_content">
 	<h3>个人资料</h3>
-	<form action="<?=site_url('user/update_data')?>" method="post">	
+	<form id="userInfo" action="<?=site_url('user/update_data')?>" method="post">	
 	<ul>
 		<li><b>*</b><span>账号：</span><?=$user->username?></li>
 		<li><b>*</b><span>姓名：</span><input name="contacts" type="text" value="<?=$user->contacts?>"></li>
@@ -23,9 +23,8 @@
 		<select name="area"></select>
 		<input name="address" type="text" value="<?=$address[3]?>" />
 		</li>
-
 	</ul>
-	<input id="p_sub" type="submit" value="提 交">
+	<input id="p_sub" type='button' value="提 交">
 	</form>
 </div>
 <script language="javascript">

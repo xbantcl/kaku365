@@ -25,6 +25,20 @@ class Goods_model extends MY_Model {
 	}
 	
 	/**
+	 * 根据商品id获取shop_id
+	 *
+	 * @param integer $goods_id 商品id.
+	 * 
+	 * @return integer
+	 */
+	public function getGoodsShopId($goods_id) {
+		$this -> db -> select('shop_id');
+		$this -> db -> from('goods');
+		$this -> db -> where('id', $goods_id);
+		$query = $this-> db ->get() -> row();
+		return $query->shop_id;
+	}
+	/**
 	 * 根据商品目录id获取商品数据
 	 * $s_c_id:商品二级目录id
 	 */

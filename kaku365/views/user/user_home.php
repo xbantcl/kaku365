@@ -5,6 +5,7 @@
 		<title>kaku365</title>
 		<link href="<?=base_url() ?>static/css/basic.css" rel="stylesheet" type="text/css">
 		<link href="<?=base_url() ?>static/css/member.css" rel="stylesheet" type="text/css">
+		<link href="<?=base_url() ?>static/css/simple.css" rel="stylesheet" type="text/css">
 		<script src="/static/js/jquery-1.11.1.min.js"></script>
 		<script src="<?=base_url() ?>static/js/basic.js"></script>
 		<script src="<?=base_url() ?>static/js/PCASClass.js"></script>

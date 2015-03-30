@@ -298,6 +298,10 @@ class User extends CI_Controller {
 				show_404();
 			$this -> load -> model('cart_model');
 			if (!is_array($goods_id)) {
+				if (empty($shop_id)) {
+					$this->load->model('goods_model');
+					$shop_id = $this->goods_model->getGoodsShopId($goods_id);
+				}
 				$cart['amount'] = $amount ? $amount :'1';
 				$cart['goods_id'] = $goods_id;
 				$cart['shop_id'] = $shop_id;
@@ -306,6 +310,10 @@ class User extends CI_Controller {
 				echo $this -> cart_model -> insert_cart($cart);
 			} else {
 				foreach ($goods_id as $g) {
+					if (empty($shop_id)) {
+						$this->load->model('goods_model');
+						$shop_id = $this->goods_model->getGoodsShopId($g);
+					}
 					$cart['amount'] = 1;
 					$cart['goods_id'] = $g;
 					$cart['shop_id'] = $shop_id;
@@ -479,8 +487,8 @@ class User extends CI_Controller {
 		$user['address'] = $this -> input -> post('province') . '-' . $this -> input -> post('city') . '-' . $this -> input -> post('area') . '-' . str_replace("-", "—", $this -> input -> post('address'));
 		if (!$user['contacts'])
 			show_404();
-		$this -> user_model -> update_user_data($user_id, $user);
-		redirect('user/index');
+		$status = $this -> user_model -> update_user_data($user_id, $user);
+		echo $status;
 	}
 
 	/**
