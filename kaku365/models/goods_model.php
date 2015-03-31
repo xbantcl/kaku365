@@ -38,6 +38,22 @@ class Goods_model extends MY_Model {
 		$query = $this-> db ->get() -> row();
 		return $query->shop_id;
 	}
+	
+	/**
+	 * 根据商品id获取商品信息.
+	 *
+	 * @param string  $fields   字段.
+	 * @param integer $goods_id 商品id.
+	 *
+	 * @return integer
+	 */
+	public function getGoodsInfo($fields, $goods_id) {
+	    $this -> db -> select($fields);
+	    $this -> db -> from('goods');
+	    $this -> db -> where('id', $goods_id);
+	    return $this-> db ->get() -> row();
+	}
+	
 	/**
 	 * 根据商品目录id获取商品数据
 	 * $s_c_id:商品二级目录id

@@ -66,8 +66,7 @@ class User extends CI_Controller {
                 $user['password'] = md5($this -> input -> post('password') . $user['reg_date']);
                 $user_data = $this -> user_model -> insertUser($user);
                 if ($user_data) {
-                    $this -> session -> set_userdata($user_data);
-                    redirect('welcome/index');
+                    redirect('user/login');
                 } else {
                     echo "<script>alert('注册失败')</script>";
                     $this -> load -> view('user_register');
@@ -96,13 +95,16 @@ class User extends CI_Controller {
 			$user_data = $this -> user_model -> checkUser($username, $password);
 			if ($user_data) {
 				$this -> session -> set_userdata($user_data);
+				redirect('welcome/index');
+				/*
+				直接跳到首页，不用跳到上次浏览页面
 				$url = $this -> session -> userdata('url');
 				if ($url) {
 					redirect($url);
 				} else {
 					redirect('welcome/index');
 				}
-
+                */
 			} else {
 				echo "<script>alert('登录失败')</script>";
 				$this -> load -> view('user_login');
@@ -232,9 +234,18 @@ class User extends CI_Controller {
 	public function collect() {
 		$this -> check_login();
 		$this -> load -> model('collect_model');
+		$this -> load -> model('goods_model');
 		$user_id = $this -> session -> userdata('id');
 		$data['user'] = $this -> user_model -> getUserById($user_id);
 		$data['collects'] = $this -> collect_model -> getCollects($user_id);
+		// 获取商品编码
+		foreach ($data['collects'] as $index => $item) {
+		    $productCode = $this->goods_model->getGoodsInfo('product_code', $item['goods_id'])->product_code;
+		    if (empty($productCode)) {
+		        $productCode = '';
+		    }
+		    $data['collects'][$index]['product_code'] = $productCode;
+		}
 		$this -> load -> view('user/user_collect', $data);
 	}
 

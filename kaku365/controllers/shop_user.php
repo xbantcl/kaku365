@@ -41,7 +41,7 @@ class Shop_user extends CI_Controller{
 				$user['phone'] = $this -> input -> post('phone');
 				$user['password'] = md5($this -> input -> post('password') . 'kaku365%^&RFGHJRFGB');
 				if ($this -> Shop_user_model ->register($user)) {
-					redirect('manager');
+					redirect('shop_user/login');
 				} else {
 					echo "<script>alert('对不起,注册失败,请重新注册.')</script>";
 					redirect('shop_user/register');

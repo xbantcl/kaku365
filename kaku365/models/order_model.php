@@ -94,7 +94,7 @@ class Order_model extends MY_Model {
 		$this -> db -> select('count(id) as s_number');
 		$this -> db -> from('order');
 		$this -> db -> where('user_id', $user_id);
-		$this -> db -> where('status', 3);
+		$this -> db -> where('status', 2);
 		$query = $this -> db -> get();
 		return $query -> row();
 	}
