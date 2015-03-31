@@ -27,20 +27,20 @@ class Shop_user extends CI_Controller{
 			$this -> load -> view('shop_user_register');
 		}
 		else {
-			$s_captcha = $this -> session -> userdata('code');
+			$s_captcha = $this -> session -> userdata('shop_code');
 			$c_captcha = $this -> input -> post('captcha');
 			if ($s_captcha != $c_captcha) {
 				echo "<script>alert('验证码错误.$s_captcha')</script>";
 				$this -> load -> view('shop_user_register');
 			} else {
-				$this -> load -> model('Shop_user_model');
+				$this -> load -> model('shop_user_model');
 				$user['reg_date'] = date('Y-m-d H:i:s');
 				$user['last_login'] = date('Y-m-d H:i:s');
 				$user['ip'] = $this -> input -> ip_address();
 				$user['username'] = $this -> input -> post('username');
 				$user['phone'] = $this -> input -> post('phone');
 				$user['password'] = md5($this -> input -> post('password') . 'kaku365%^&RFGHJRFGB');
-				if ($this -> Shop_user_model ->register($user)) {
+				if ($this -> shop_user_model ->register($user)) {
 					redirect('shop_user/login');
 				} else {
 					echo "<script>alert('对不起,注册失败,请重新注册.')</script>";
@@ -62,13 +62,20 @@ class Shop_user extends CI_Controller{
 			$this -> load -> view('shop_user_login');
 		} else{
 			$this -> load -> model('Shop_user_model');
-			$login_user['username'] = $this->input->post('username');
-			$login_user['password'] = md5($this -> input -> post('password') . 'kaku365%^&RFGHJRFGB');
-			if($this -> Shop_user_model ->login($login_user)){
-				redirect('manager');
-			}else{
-				echo "<script>alert('登录失败!')</script>";
-				$this -> load -> view('shop_user_login');
+			$shopCode = $this -> session -> userdata('shop_code');
+			$captcha = $this -> input -> post('captcha');
+			if ($shopCode != $captcha) {
+			    echo "<script>alert('验证码错误.$captcha')</script>";
+			    $this -> load -> view('shop_user_login');
+			} else {
+    			$login_user['username'] = $this->input->post('username');
+    			$login_user['password'] = md5($this -> input -> post('password') . 'kaku365%^&RFGHJRFGB');
+    			if($this -> Shop_user_model ->login($login_user)){
+    				redirect('manager');
+    			}else{
+    				echo "<script>alert('登录失败!')</script>";
+    				$this -> load -> view('shop_user_login');
+    			}
 			}
 		}
 	}
@@ -92,10 +99,12 @@ class Shop_user extends CI_Controller{
 	 * 验证码
 	 */
 	public function captcha() {
-		$this -> load -> helper('captcha');
-		$config = array('word_length' => 4, 'img_width' => 100, 'img_height' => 34);
-		$code = create_captcha($config);
-		$this -> session -> set_userdata('code', $code);
+        $this->load->helper('image');
+        $verifyCode = generateVerifyCodeImg();
+        $this->session->set_userdata('shop_code', $verifyCode['code']);
+        header("Content-type: image/gif");
+        echo $verifyCode['img'];
+        exit;
 	}
 
 

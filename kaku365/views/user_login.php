@@ -26,8 +26,12 @@
 			<form action="<?=site_url('user/login') ?>" method="post">
 				<h2>会员登录页</h2>
 				<ul>
-					<li class="member_login"><strong>账号：</strong><input required name="username" type="text" class="regName" maxlength="20"  placeholder="登录帐号"/></li>
-					<li class="member_login"><strong>密码：</strong><input required name="password" type="password" class="regPassword" maxlength="20" placeholder="登录密码"/></li>
+					<li class="member_login"><strong>账&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;号：&nbsp;&nbsp;</strong><input required name="username" type="text" class="regName" maxlength="20"  placeholder="登录帐号"/></li>
+					<li class="member_login"><strong>密&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;码：&nbsp;&nbsp;</strong><input required name="password" type="password" class="regPassword" maxlength="20" placeholder="登录密码"/></li>
+				    <li class="member_login"><strong>验证码：&nbsp;&nbsp;</strong>
+                        <input style="vertical-align:middle;" required name="captcha" type="text" id="regSMS" placeholder="验证码"/>
+                        <img style="vertical-align:middle;" src="<?php echo site_url('user/code'); ?>" onclick= this.src="<?php echo site_url('user/code').'/'?>"+Math.random() style="cursor: pointer;"/>
+                    </li>
 				</ul>
 				<div class="reg_sub">
 					<input id="register_sub" type="submit" value="登 录"/>

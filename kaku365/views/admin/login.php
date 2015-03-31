@@ -26,24 +26,20 @@
 		<!--登陆窗口开始-->
 		<div class="register">
 			
-			<form method="post" id="form_login" action="<?php echo site_url('admin/admin/login'); ?>">
+			<form method="post" id="form_login" action="<?php echo site_url('admin/login'); ?>">
 				<ul>
 					<h1>管理员登陆</h1>
 					<li>
-						<strong>账号：</strong>
+						<strong>账&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;号：&nbsp;&nbsp;</strong>
 						<input id="user_name" name="user_name" class="regName" autocomplete="off" type="text" >
 					</li>
 					<li>
-						<strong>密码：</strong>
+						<strong>密&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;码：&nbsp;&nbsp;</strong>
 						<input name="password" id="password" class="regPassword" autocomplete="off"  type="password">
 					</li>
-					<li>
-						<strong>验证码：</strong>
-						<input name="captcha" id="captcha" autocomplete="off"  type="text" >
-					</li>
-					<li>
-						<img src="<?php echo site_url('admin/admin/code'); ?>" onclick= this.src="<?php echo site_url('admin/admin/code').'/'?>"+Math.random() style="cursor: pointer;"/>
-					</li>
+			        <li><strong>验&nbsp;证&nbsp;码：&nbsp;&nbsp;&nbsp;</strong><input style="vertical-align:middle;" required name="captcha" type="text" id="regSMS" placeholder="验证码"/>
+                        <img style="vertical-align:middle;" src="<?php echo site_url('admin/code'); ?>" onclick= this.src="<?php echo site_url('admin/code').'?'?>"+Math.random() style="cursor: pointer; margin-top: 10px;"/>
+                    </li>
 					<li>
 						<input name="nchash" type="hidden" value="6174127b" />
 						<input id="register_sub" value="登陆" type="submit"/>

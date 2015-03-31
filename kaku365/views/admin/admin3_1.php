@@ -39,7 +39,7 @@
         <td><?php echo $item['address']; ?></td>
         <td><?php echo $item['contacts']; ?></td>
         <td><?php echo $item['phone']; ?></td>
-        <td><a href="/admin/admin/userManage/?user_id=<?php echo $item['id'] ?>"  target="_blank">修改</a><a href="<?php echo base_url('admin/user/del/?userid').'='.$item['id']?>">删除</a></td>
+        <td><a href="/admin/userManage/?user_id=<?php echo $item['id'] ?>"  target="_blank">修改</a><a href="<?php echo base_url('admin/user/del/?userid').'='.$item['id']?>">删除</a></td>
       </tr>
       <?php endforeach;?>
     </tbody>

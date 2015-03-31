@@ -32,9 +32,8 @@
             <li><strong>确认密码：</strong><input required id="s_password" name="s_password" type="password"  class="regPassword" maxlength="20" onblur="check_pwd()" placeholder="确认密码"/><span id="error_s_password">请再次输入密码</span></li>
             <li><strong>手机号码：</strong><input required name="phone" type="text" class="regPine" minlength="11" maxlength="11" placeholder="手机号码"/><span>完成验证后可用该手机号登陆和找回密码</span></li>
             <!--<li><strong>短信验证：</strong><input required name="captcha" type="text" id="regSMS" placeholder="验证码"/><a href="javascript:;">获取短信验证码</a></li>-->
-            <li><strong>验 证 码：</strong><input required name="captcha" type="text" id="regSMS" placeholder="验证码"/>
-                <img src="<?php echo site_url('shop_user/captcha'); ?>" onclick= this.src="<?php echo site_url('shop_user/captcha').'/'?>"+Math.random() style="cursor: pointer;"/>
-
+            <li><strong>验 证 码：&nbsp;&nbsp;</strong><input style="vertical-align:middle;" required name="captcha" type="text" id="regSMS" placeholder="验证码"/>
+                <img style="vertical-align:middle;" src="<?php echo site_url('shop_user/captcha'); ?>" onclick= this.src="<?php echo site_url('shop_user/captcha').'/'?>"+Math.random() style="cursor: pointer; margin-top: 10px;"/>
             </li>
         </ul>
         <div class="reg_sub"><input id="register_sub" type="submit" value="立即注册"/></div>

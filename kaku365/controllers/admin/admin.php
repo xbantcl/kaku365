@@ -20,7 +20,7 @@ class Admin extends CI_Controller {
 		#权限验证
 		if (! $this->session->userdata('login_admin'))
 		{
-			redirect('admin/admin/login');
+			redirect('admin/login');
 		}
 
 		$userid =  $this->session->userdata('login_admin');
@@ -39,7 +39,7 @@ class Admin extends CI_Controller {
 		#权限验证
 		if (! $this->session->userdata('login_admin'))
 		{
-			redirect('admin/admin/login');
+			redirect('admin/login');
 		}
         $data['userweeknums'] = $this->user_model->getWeekUsers();
         $data['shopweeknums'] = $this->shop_model->getWeekShops();
@@ -54,7 +54,7 @@ class Admin extends CI_Controller {
 		#权限验证
 		if (! $this->session->userdata('login_admin'))
 		{
-			redirect('admin/admin/login');
+			redirect('admin/login');
 		}
 		$this -> load ->view('admin/admin1_2');
 	}
@@ -65,7 +65,7 @@ class Admin extends CI_Controller {
 		#权限验证
 		if (! $this->session->userdata('login_admin'))
 		{
-			redirect('admin/admin/login');
+			redirect('admin/login');
 		}
 		$this -> load -> view('admin/admin1_3');
 	}
@@ -76,7 +76,7 @@ class Admin extends CI_Controller {
 		#权限验证
 		if (! $this->session->userdata('login_admin'))
 		{
-			redirect('admin/admin/login');
+			redirect('admin/login');
 		}
 		$this -> load ->view('admin/admin1_4');
 	}
@@ -92,12 +92,12 @@ class Admin extends CI_Controller {
 	 */
 
 	public function code(){
-
-		$vals = array(
-			'word_length' => 4,
-		);
-		$code = create_captcha($vals);
-		$this->session->set_userdata('code',$code);
+	    $this->load->helper('image');
+	    $verifyCode = generateVerifyCodeImg();
+	    $this->session->set_userdata('admin_code', $verifyCode['code']);
+	    header("Content-type: image/gif");
+	    echo $verifyCode['img'];
+	    exit;
 	}
 
 
@@ -115,10 +115,9 @@ class Admin extends CI_Controller {
 			$password = $this -> input -> post('password');
 			$captcha = strtolower($this -> input ->post('captcha'));
 
-			$code = strtolower($this->session->userdata('code'));
+			$code = strtolower($this->session->userdata('admin_code'));
 			$password = trim($password);
-			$password= md5($password);
-
+			$password = md5($password);
 
 			if ($captcha == $code)
 			{
@@ -129,7 +128,7 @@ class Admin extends CI_Controller {
 					if($res['password'] == $password)
 					{
 						$this->session->set_userdata('login_admin',$res['id']);
-						redirect('admin/admin/index');
+						redirect('admin/index');
 
 					}
 					else
@@ -232,7 +231,7 @@ class Admin extends CI_Controller {
 	{
 		$this->session->unset_userdata('login_admin');
 		$this->session->sess_destroy();
-		redirect('admin/admin/login');
+		redirect('admin/login');
 	}
 }
 

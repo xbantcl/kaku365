@@ -15,23 +15,21 @@ class Shop extends CI_Controller {
 	//商家管理
 	public function manager()
 	{
+	    // 页数显示
+	    $pageSize = 5;
 		#权限验证
 		if (! $this->session->userdata('login_admin'))
 		{
-			redirect('admin/admin/login');
+			redirect('admin/login');
 		}
-
+        $this->load->helper('paginate');
 		$page = (int)$this->input->get('p');
         if($page <= 0)
             $page = 1;
-        $data['page'] = $page;
-        $data['next_page'] = $page+1;
-        $data['preview_page'] = $page-1;
-		$res = $this ->Shop_model-> getShopList(10, $page-1);
-		$data['all_page'] = ceil($this ->Shop_model-> getTotal() / 10) ;
-
+		$res = $this ->Shop_model-> getShopList($pageSize, $page-1);
+		$data['all_page'] = ceil($this ->Shop_model-> getTotal() / $pageSize) ;
+        $data['pagination'] = paginationByTotalPage($page, $data['all_page']);
 		$data['res'] = $res;
-
 		$this -> load ->view('admin/admin2_1',$data);
 	}
 

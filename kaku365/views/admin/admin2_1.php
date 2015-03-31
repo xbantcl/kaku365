@@ -35,11 +35,11 @@
       <?php foreach ($res as $item):?>
       <tr>
         <td><?php echo $item['id']; ?></td>
-        <td><a href="/admin/admin/shopManage/?shop_user_id=<?php echo $item['user_id'] ?>" target="_blank"><?php echo $item['name']; ?></a></td>
+        <td><a href="admin/shopManage/?shop_user_id=<?php echo $item['user_id'] ?>" target="_blank"><?php echo $item['name']; ?></a></td>
         <td><?php echo $item['address']; ?></td>
         <td><?php echo $item['contacts']; ?></td>
         <td><?php echo $item['telephone']; ?></td>
-        <td><a href="/admin/admin/shopManage/?shop_user_id=<?php echo $item['user_id'] ?>" target="_blank">修改</a><a href="<?php echo base_url('admin/shop/del/?shopid').'='.$item['id']?>">删除</a></td>
+        <td><a href="admin/shopManage/?shop_user_id=<?php echo $item['user_id'] ?>" target="_blank">修改</a><a href="<?php echo base_url('admin/shop/del/?shopid').'='.$item['id']?>">删除</a></td>
       </tr>
       <?php endforeach;?>
 
@@ -47,18 +47,6 @@
         </tbody>
   </table>
 </div>
-      <p class="page_btn">
-    <?php
-    if($page > 1)
-        echo "<a href=\"/admin/shop/manager/?p=$preview_page\">上一页&nbsp;</a>";
-    for($i = 1;$i <= $all_page;$i++){
-        if($i == $page)
-            echo "<span>$i&nbsp;</span>";
-        else
-            echo "<a href=\"/admin/shop/manager/?p=$i\">$i&nbsp;</a>";
-    }
-    if($page < $all_page)
-   echo "<a href=\"/admin/shop/manager/?p=$next_page\"> 下一页</a>";
-?></p>
+<?php echo $pagination;?>
 </body>
 </html>

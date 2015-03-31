@@ -43,12 +43,12 @@
 									</a>
 								</li>
 								<li>
-									<a href="<?php echo site_url('admin/admin/logout'); ?>">
+									<a href="<?php echo site_url('admin/logout'); ?>">
 										退出
 									</a>
 								</li>
 								<li>
-									<a href="javascript:;" onClick="setSrc('<?=site_url('admin/admin/alertpassword')?>')">
+									<a href="javascript:;" onClick="setSrc('<?=site_url('admin/alertpassword')?>')">
 										修改密码
 									</a>
 								</li>
@@ -68,7 +68,7 @@
 						<!--网站管理开始-->
 						<ul style="display:block">
 							<li>
-								<a href="javascript:;" onClick="setSrc('<?=site_url('admin/admin/serverData')?>')">
+								<a href="javascript:;" onClick="setSrc('<?=site_url('admin/serverData')?>')">
 									欢迎页面
 								</a>
 							</li>
@@ -113,7 +113,7 @@ for (var i = 0; i < aA.length; i++) {
 	}
 }</script>
 					<td valign="top" width="100%">
-						<iframe id="m_content" width="100%" height="100%" onload="window.parent" frameborder="0" scrolling="yes" style="overflow:visible; height:550px; width:100%;" src="<?=site_url('admin/admin/serverData')?>">
+						<iframe id="m_content" width="100%" height="100%" onload="window.parent" frameborder="0" scrolling="yes" style="overflow:visible; height:550px; width:100%;" src="<?=site_url('admin/serverData')?>">
 						</iframe>
 					</td>
 				</tr>

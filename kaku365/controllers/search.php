@@ -32,13 +32,15 @@ class Search extends CI_Controller {
 			$config['total_rows'] = $this -> search_model -> getTotal();
 			$this -> pagination -> initialize($config);
 			$data['shop'] = $this -> search_model -> getPage($config['per_page'], $num_page - 1);
-			$data['page'] = $this -> pagination -> create_links();
+			// $data['page'] = $this -> pagination -> create_links();
+			$data['page'] = paginationByTotalPage($num_page, $config['total_rows']);
 		} else {
 			$this -> session -> set_userdata('string', $string);
 			$config['total_rows'] = $this -> search_model -> getTotal($string);
 			$this -> pagination -> initialize($config);
 			$data['shop'] = $this -> search_model -> getPages($string, $config['per_page'], $num_page - 1);
-			$data['page'] = $this -> pagination -> create_links();
+			//$data['page'] = $this -> pagination -> create_links();
+			$data['page'] = paginationByTotalPage($num_page, $config['total_rows']);
 		}
 		$user_id = $this -> session -> userdata('id');
 		if ($user_id) {

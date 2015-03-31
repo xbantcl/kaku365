@@ -44,6 +44,6 @@
 			<?php endforeach;?>
 		</tbody>
 	</table>
-	<p>您共有<b><?=$order_count->number?></b>张有效订单； 累计消费 <b><?=$order_count->total?></b> 元； 其中已成交订单共 <b><?=$order_s_count->s_number?></b> 张； 累积成交订单总金额 <b><?=$order_s_count->s_total?></b> 元
+	<p>您共有<b><?=$order_count->number?></b>张有效订单； 累计消费 <b><?=!empty($order_count->total)?$order_count->total:0;?></b> 元； 其中已成交订单共 <b><?=$order_s_count->s_number?></b> 张； 累积成交订单总金额 <b><?=!empty($order_s_count->s_total)?$order_s_count->s_total:0?></b> 元
 	</p>
 </div> 

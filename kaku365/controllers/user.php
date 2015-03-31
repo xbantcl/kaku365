@@ -35,15 +35,13 @@ class User extends CI_Controller {
      * @date 2015-01
      */
 
-    public function code(){
-        $this->load->helper('captcha');
-        $vals = array(
-            'word_length' => 4,
-            'img_width' => 100,
-            'img_height'=>42
-        );
-        $code = create_captcha($vals);
-        $this->session->set_userdata('user_code',$code);
+    public function code() {
+        $this->load->helper('image');
+        $verifyCode = generateVerifyCodeImg();
+        $this->session->set_userdata('user_code', $verifyCode['code']);
+        header("Content-type: image/gif");
+        echo $verifyCode['img'];
+        exit;
     }
 
 	/**
@@ -91,24 +89,31 @@ class User extends CI_Controller {
 			}
 			$this -> load -> view('user_login');
 		} else {
-			$password = $this -> input -> post('password');
-			$user_data = $this -> user_model -> checkUser($username, $password);
-			if ($user_data) {
-				$this -> session -> set_userdata($user_data);
-				redirect('welcome/index');
-				/*
-				直接跳到首页，不用跳到上次浏览页面
-				$url = $this -> session -> userdata('url');
-				if ($url) {
-					redirect($url);
-				} else {
-					redirect('welcome/index');
-				}
-                */
-			} else {
-				echo "<script>alert('登录失败')</script>";
-				$this -> load -> view('user_login');
-			}
+		    $captcha = strtolower($this -> input ->post('captcha'));
+		    $code = strtolower($this->session->userdata('user_code'));
+		    if ($captcha == $code) {
+    			$password = $this -> input -> post('password');
+    			$user_data = $this -> user_model -> checkUser($username, $password);
+    			if ($user_data) {
+    				$this -> session -> set_userdata($user_data);
+    				redirect('welcome/index');
+    				/*
+    				直接跳到首页，不用跳到上次浏览页面
+    				$url = $this -> session -> userdata('url');
+    				if ($url) {
+    					redirect($url);
+    				} else {
+    					redirect('welcome/index');
+    				}
+                    */
+    			} else {
+    				echo "<script>alert('登录失败')</script>";
+    				$this -> load -> view('user_login');
+    			}
+		    } else {
+		        echo "<script>alert('对不起,验证码错误.')</script>";
+		        $this -> load -> view('user_login');
+		    }
 		}
 	}
 

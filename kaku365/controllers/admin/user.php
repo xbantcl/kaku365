@@ -26,7 +26,7 @@ class User extends CI_Controller{
         #权限验证
         if (! $this->session->userdata('login_admin'))
         {
-            redirect('admin/admin/login');
+            redirect('admin/login');
         }
 
         $res = $this ->User_model-> getUserList();
