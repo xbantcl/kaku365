@@ -33,6 +33,11 @@
 										会员管理
 									</a>
 								</li>
+			                    <li>
+									<a href="javascript:;">
+										商品管理
+									</a>
+								</li>
 							</ul>
 							<!--主导航结束-->
 							<!--admin开始-->
@@ -93,6 +98,24 @@
 							</li>
 						</ul>
 						<!--会员管理结束-->
+						<!--商品管理开始-->
+						<ul>
+							<li>
+								<a href="javascript:;" onClick="setSrc('<?=site_url('admin/shop/addGoods')?>')">
+									添加商品
+								</a>
+								<a href="javascript:;" onClick="setSrc('<?=site_url('admin/user/userManager')?>')">
+									管理商品
+								</a>
+								<a href="javascript:;" onClick="setSrc('<?=site_url('admin/user/userManager')?>')">
+									添加品牌
+								</a>
+								<a href="javascript:;" onClick="setSrc('<?=site_url('admin/user/userManager')?>')">
+									管理品牌
+								</a>
+							</li>
+						</ul>
+						<!--商品管理结束-->
 					</td>
 					<script>var oNav_l = document.getElementById('nav_left');
 var aUl = oNav_l.getElementsByTagName('ul');

@@ -297,3 +297,25 @@ table {
 	cursor: pointer;
 }
 /*管理员修改密码样式结束*/
+
+/*添加商品样式开始*/
+.product_img {
+	list-style-type:none;
+}
+.product_img li {
+	margin:4px;
+	padding:2px;
+	float:left;
+	border:1px solid #ccc;
+}
+.product_img li img {
+	margin-left:80px;
+	height:80px;
+	width:80px;
+}
+.c_col8 {
+    float: left;
+    padding-left: 100px;	
+	clear:both;
+}
+/*添加商品样式结束*/

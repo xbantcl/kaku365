@@ -69,6 +69,75 @@ class Shop extends CI_Controller {
 		$this -> load ->view('admin/admin2_1',$data);
 	}
 
+	/**
+	 * 添加商品
+	 * @author chenjia404
+	 * @date   2015-01-25
+	 */
+	public function addGoods()
+	{
+	    if (isset($_POST) && count($_POST)) {
+	        $goods[ 'name' ]                = $this->input->post('name');
+	        $goods[ 'brand_id' ]            = $this->input->post('brand_id');
+	        $goods[ 'category1' ]           = $this->input->post('category1');
+	        $goods[ 'category2' ]           = $this->input->post('category2');
+	        $goods[ 'category3' ]           = $this->input->post('category3');
+	        $goods[ 'price' ]               = $this->input->post('price');
+	        $goods[ 'format' ]              = $this->input->post('format');
+	        $goods[ 'product_code' ]        = $this->input->post('product_code');
+	        $goods[ 'product_ingredients' ] = $this->input->post('product_ingredients');
+	        $goods[ 'shelf_life' ]          = $this->input->post('shelf_life');
+	        $goods[ 'description' ]         = $this->input->post('description');
+	        $goods[ 'status' ]         = $this->input->post('status');
+	        if (isset($_FILES[ 'images' ])) {
+	            $this->load->helper('image');
+	            $goods[ 'images' ] = '';
+	            $goods[ 'cover_image' ] = '';
+	            for ($i = 0; $i < count($_FILES[ 'images' ][ 'tmp_name' ]); $i++) {
+	                if (isset($_FILES[ 'images' ][ 'tmp_name' ][ $i ]) && is_uploaded_file($_FILES[ 'images' ][ 'tmp_name' ][ $i ]) && $_FILES[ 'images' ][ 'error' ][ $i ] == 0) {
+	                    $x   = explode('.', $_FILES[ 'images' ][ 'name' ][ $i ]);
+	                    $ext = strtolower(end($x));
+	                    $md5 = $goods[ 'product_code' ] . "_$i";
+	                    if (strpos($ext, 'jpg') !== false || strpos($ext, 'png') !== false || strpos($ext,
+	                            'gif') !== false
+	                    ) {
+	                        if (move_uploaded_file($_FILES[ 'images' ][ 'tmp_name' ][ $i ],
+	                                'static/uploads/' . $md5 . '.' . $ext)) {
+	                                $goods[ 'images' ] .= $md5 . '.' . $ext . ',';
+	                                if($goods[ 'cover_image' ] == '')
+	                                {
+	                                    resizeImage('static/uploads/' . $md5 . '.' . $ext,'static/uploads/square/' . $md5 . '.' . $ext,100);
+	                                    resizeImage('static/uploads/' . $md5 . '.' . $ext,'static/uploads/bmiddle/' . $md5 . '.' . $ext,320);
+	                                    $goods[ 'cover_image' ] = $md5 . '.' . $ext;
+	                                }
+	                        }
+	
+	                    }
+	                }
+	            }
+	        }
+	        if($goods[ 'category1' ] == 0)
+	        {
+	            echo "<script>alert('请选择分类')</script>";
+	        }
+	        elseif(strlen($goods[ 'product_code' ]) != 13)
+	        {
+	            echo "<script>alert('请输入13位编码')</script>";
+	        }
+	        elseif ($this->Manager_model->add_goods($goods)) {
+	            echo "<script>alert('添加成功')</script>";
+	        } else {
+	            echo "<script>alert('添加失败')</script>";
+	        }
+	    }
+
+	     //$this->load->model('Manager_model');
+	    //$data[ 'brands' ]    = $this->Manager_model->get_brand();
+	    //$data[ 'categorys' ] = $this->Manager_model->get_category(0);
+	    //$data['user'] = $this->Shop_user_model->user;
+	    $this->load->view('admin/goods/header',$data);
+	    $this->load->view('admin/goods/addGoods');
+	}
 
 }
 
