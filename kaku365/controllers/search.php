@@ -23,24 +23,26 @@ class Search extends CI_Controller {
 		if (!$this -> uri -> segment(3) && !$this -> input -> post('string')) {
 			$this -> session -> unset_userdata('string');
 		}
-
-		$string = $this -> input -> post('string') ? $this -> input -> post('string') : $this -> session -> userdata('string');
+        $pageSize = 5;
+		$string = $this -> input -> post('string') ? $this -> input -> post('string') : '';
+		$page = $this->input->get('p');
+		if (empty($page)) {
+			$page = 1;
+		}
 		$num_page = $this -> uri -> segment(3, 1);
 		$config['base_url'] = site_url('search/index');
-		$config['per_page'] = 5;
-		if (!$string) {
-			$config['total_rows'] = $this -> search_model -> getTotal();
-			$this -> pagination -> initialize($config);
-			$data['shop'] = $this -> search_model -> getPage($config['per_page'], $num_page - 1);
-			// $data['page'] = $this -> pagination -> create_links();
-			$data['page'] = paginationByTotalPage($num_page, $config['total_rows']);
-		} else {
-			$this -> session -> set_userdata('string', $string);
+		$this->load->helpers('paginate');
+		
+		if (!empty($string)) {
 			$config['total_rows'] = $this -> search_model -> getTotal($string);
-			$this -> pagination -> initialize($config);
-			$data['shop'] = $this -> search_model -> getPages($string, $config['per_page'], $num_page - 1);
-			//$data['page'] = $this -> pagination -> create_links();
-			$data['page'] = paginationByTotalPage($num_page, $config['total_rows']);
+			$data['shop'] = $this -> search_model -> getPages($string, $pageSize, ($page - 1)*$pageSize);
+			$totallPage = ceil($config['total_rows']/$pageSize);
+			$data['page'] = paginationByTotalPage($page, $totallPage);
+		} else {
+			$config['total_rows'] = $this -> search_model -> getTotal();
+			$data['shop'] = $this -> search_model -> getPage($pageSize, ($page - 1)*$pageSize);
+			$totallPage = ceil($config['total_rows']/$pageSize);
+			$data['page'] = paginationByTotalPage($page, $totallPage);
 		}
 		$user_id = $this -> session -> userdata('id');
 		if ($user_id) {

@@ -12,7 +12,7 @@ class Search_model extends MY_Model {
 	//获取商店数据
 	//$per_page：每页数据条数
 	public function getSome($per_page = 5) {
-                $this -> db ->where('status',1);
+        $this -> db ->where('status',1);
 		$this -> db -> select('id,name,telephone,address,introduce,img_path');
 		$this -> db -> from('shop');
 		$this -> db -> order_by('id', 'DESC');
@@ -29,7 +29,7 @@ class Search_model extends MY_Model {
 		$this -> db -> from('shop');                
 		$this -> db -> like('name', $string, 'both');
 		$this -> db -> order_by('id', 'DESC');
-                $this -> db -> where('status',1);
+        $this -> db -> where('status',1);
 		$this -> db -> limit($per_page);
 		$query = $this -> db -> get();
 		return $query -> result_array();
@@ -37,28 +37,28 @@ class Search_model extends MY_Model {
 
 	//查询商店分页数据 (有查询条件)
 	//$per_page：每页数据条数
-	//$num_page:或许数据页数
+	//$index: 读取数据位置
 	//$string：查询关键词
-	public function getPages($string, $per_page = 5, $num_page) {
+	public function getPages($string, $per_page = 5, $index) {
 		$this -> db -> select('id,name,telephone,address,introduce,img_path');
 		$this -> db -> from('shop');
 		$this -> db -> like('name', $string, 'both');
 		$this -> db -> order_by('id');
         $this -> db ->where('status',1);
-		$this -> db -> limit($per_page,$num_page * $per_page);
+		$this -> db -> limit($per_page,$index);
 		$query = $this -> db -> get();
 		return $query -> result_array();
 	}
 
 	//查询商店分页数据 （无查询条件）
 	//$per_page：每页数据条数
-	//$num_page:或许数据页数
-	public function getPage($per_page, $num_page) {
+	//$index: 读取数据位置
+	public function getPage($per_page, $index) {
         $this -> db -> where('status',1);
 		$this -> db -> select('id,name,telephone,address,introduce,img_path');
 		$this -> db -> from('shop');
 		$this -> db -> order_by('id');
-		$this -> db -> limit($per_page, $num_page * $per_page);
+		$this -> db -> limit($per_page, $index);
 		return $this -> db -> get() -> result_array();
 	}
 

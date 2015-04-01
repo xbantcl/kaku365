@@ -135,7 +135,6 @@ class Shop extends CI_Controller {
 	    //$data[ 'brands' ]    = $this->Manager_model->get_brand();
 	    //$data[ 'categorys' ] = $this->Manager_model->get_category(0);
 	    //$data['user'] = $this->Shop_user_model->user;
-	    $this->load->view('admin/goods/header',$data);
 	    $this->load->view('admin/goods/addGoods');
 	}
 

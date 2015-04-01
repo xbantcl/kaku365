@@ -35,7 +35,7 @@ function resizeImage($originalImage,$out_file ,$new_height)
  * 
  * @return array
  */
-function getCodeImgConfig($type)
+function getCodeImgConfig($type = 'number')
 {
     if (empty($type) || !in_array($type, array('number', 'letter', 'mixed'))) {
         $type = 'number';
@@ -108,7 +108,7 @@ function generateVerifyCodeImg()
     for ($x = 0; $x < $im_x; $x++) {
         for ($y = 0; $y < $im_y; $y++) {
             $rgb = imagecolorat($im, $x, $y);
-            imagesetpixel($distortion_im, (int)($x-1+sin($y/$im_y*2*M_PI-0.1*M_PI)*($im_y/10)), $y, $rgb);
+           imagesetpixel($distortion_im, (int)($x-1+sin($y/$im_y*2*M_PI-0.1*M_PI)*($im_y/10)), $y, $rgb);
         }
     }
 
