@@ -41,14 +41,13 @@
                 ?>"><strong></strong></a></span>
 		<?php endif;?>
 		<?php if(isset($_GET['price'])):?>
-            <?php
-            $price_s = array('1'=>'50元以下','2'=>'50-100元','3'=>'101-200元','4'=>'201-300元','5'=>'300以上');?>
-            <span id="price_s"><em>价格：</em><i><?= $price_s[$_GET['price']]?></i><a href="?<?php
+            <?php $price_s = array('1'=>'50元以下','2'=>'50-100元','3'=>'101-200元','4'=>'201-300元','5'=>'300以上');?>
+            <span id="price_s"><em>价格：</em><i><?= $price_s[$_GET['price']]?></i><a href="?<?php 
                 $link = $_GET;
                 unset($link['price']);
                 foreach($link as $key=>$value)
                     echo "&$key=$value";
-                ?>"><strong></strong></a</span>
+                ?>"></a></span>
 		<?php endif;?>
 	</p>
     </div>

@@ -17,25 +17,15 @@
 <body>
 <!--管理中心内容开始-->
 <div class="admin_page">
-    <h3>商家管理</h3>
+    <h3>添加商品模板</h3>
 <!--管理中心右内容开始-->
     <form method="post" enctype="multipart/form-data">
     <ul class="list-group">
-        <li class="list-group-item">商品分类：<select id="p_category"></select></li>
         <input type="hidden" id="category1" name="category1">
         <input type="hidden" id="category2" name="category2">
         <input type="hidden" id="category3" name="category3">
         <li class="list-group-item">名称：<input name="name" type="text" /></li>
-        <li class="list-group-item">品牌：<select name="brand_id">
-                <?php
-                if(isset($brands))
-                foreach($brands as $brand)
-                {
-                    echo "<option value='{$brand['id']}'>{$brand['name']}</option>";
-                }
-                ?>
-                <option value="0">其它</option></select></li>
-        <li class="list-group-item">价格：<input name="price" type="text" /></li>
+        <li class="list-group-item">净含量：<input name="price" type="text" /></li>
         <li class="list-group-item">单位：<input name="format" type="text" /></li>
         <li class="list-group-item">商品编码：<input name="product_code" type="text" /></li>
         <li class="list-group-item" style="vertical-align:middle;">产品配料：<textarea style="vertical-align:middle;" name="product_ingredients"></textarea></li>
