@@ -113,6 +113,9 @@
 								<a href="javascript:;" onClick="setSrc('<?=site_url('admin/user/userManager')?>')">
 									管理品牌
 								</a>
+								<a href="javascript:;" onClick="setSrc('<?=site_url('admin/admin/addCategory')?>')">
+									添加分类
+								</a>
 							</li>
 						</ul>
 						<!--商品管理结束-->

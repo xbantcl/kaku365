@@ -56,4 +56,30 @@
          else
              false;
      }
+     
+     /**
+      * 获取商品分类
+      * @author xiaoboa
+      * @date   2015-04-03
+      * @param $pid
+      * @return array
+      */
+     public function getCategory($pid)
+     {
+         $this->table        = 'goods_category';
+         $where[ 'shop_id' ] = 11;
+         //$where[ 'pid' ]     = $pid;
+         $where[ 'status' ]  = 1;
+         $data               = $this->_get('*', $where);
+         $categorys          = array();
+         $categorys[0]     = array('name' => '本级新建');
+         foreach ($data as $item) {
+             if(0 == $item['pid']) {
+                $categorys[$item['id']] = array('name' => $item['name']);
+             } elseif (isset($categorys[$item['pid']])) {
+                 $categorys[$item['pid']]['cell'][$item['id']] = array('name' => $item['name']);
+             }
+         }
+         return $categorys;
+     }
  }

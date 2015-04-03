@@ -48,6 +48,7 @@ $route['admin/alertpassword'] = "admin/admin/alertpassword";
 $route['admin/serverData'] = "admin/admin/serverData";
 $route['admin/shopManage'] = "admin/admin/shopManage";
 $route['admin/userManage'] = "admin/admin/userManage";
+$route['admin/getCategoryAjax'] = "admin/admin/getCategoryAjax";
 
 /* End of file routes.php */
 /* Location: ./application/config/routes.php */

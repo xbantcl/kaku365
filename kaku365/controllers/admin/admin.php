@@ -233,8 +233,43 @@ class Admin extends CI_Controller {
 		$this->session->sess_destroy();
 		redirect('admin/login');
 	}
+	
+    /**
+     * 添加商品分类
+     * @author xiaoboa
+     * @date   2015-04-03
+     */
+    public function addCategory()
+    {
+        if (isset($_POST) && count($_POST)) {
+            $category[ 'leave' ]  = $this->input->post('leave');
+            $category[ 'pid' ]    = $this->input->post('pid');
+            $category[ 'name' ]   = $this->input->post('name');
+            $category[ 'status' ] = $this->input->post('status');
+            if ($this->Manager_model->add_category($category)) {
+                echo "<script>alert('添加成功')</script>";
+            } else {
+                echo "<script>alert('添加失败')</script>";
+            }
+        }
+        $data['categorys'] = $this->Admin_model->getCategory(0);
+        //echo '<pre>';
+        //print_r($data['categorys']);exit;
+        $this->load->view('admin/goods/' . __FUNCTION__, $data);
+    }
+    
+    /**
+     * ajax获取商品分类
+     * @author chenjia404
+     * @date   2015-01-25
+     */
+    public function getCategoryAjax()
+    {
+        $pid = (int)$this->input->get('id');
+        $data = $this->Admin_model->getCategory($pid);
+        echo json_encode($data);
+    }
 }
-
 /* End of file admin.php */
 /* Location: ./application/controllers/admin.php */
 

@@ -39,7 +39,7 @@ var LinkageSel = function(opts) {
 			data		: null,
 			head		: 'Please select..',		// {str|''|false} 自动添加第一个选择项,非字符串或false表示不使用
 			level		: 20,			// 限定层级防止死循环
-			loaderImg	: 'images/ui-anim_basic_16x16.gif',
+			loaderImg	: 'static/images/ui-anim_basic_16x16.gif',
 			loader_duration: 100,		// loaderImg show/hide()动画持续时间
 			root		: [],			// 根所在位置,决定获取数据入口.不适用于ajax模式
 			minWidth	: 120,
@@ -105,14 +105,7 @@ var LinkageSel = function(opts) {
 	
 	
 	var loader = $('#linkagesel_loader');
-	if (!loader || !loader[0]) {
-		$(document.body).append('<img id="linkagesel_loader" style="display: none; position: absolute;"  src="' + 
-				encodeURI(this.st.loaderImg || 'ui-anim_basic_16x16.gif') + '" />');
-		this.loader = $('#linkagesel_loader') || null;
-	}
-	else {
-		this.loader = loader;
-	}
+
 	
 	if (typeof this.st.select === 'string') {		// selct: 'selector'
 		this.st.select = [this.st.select];
