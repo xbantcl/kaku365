@@ -461,4 +461,5 @@ class Manager_model extends MY_Model
         $where[ 'id' ]      = $id;
         return $this->_update($goods, $where);
     }
+
 }

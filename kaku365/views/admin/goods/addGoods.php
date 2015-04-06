@@ -3,14 +3,10 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <script src="/static/js/jquery-1.4.4.min.js"></script>
-    <script src="/static/js/linkagesel.js"></script>
-    <script src="/static/js/manager.js"></script>
+    <script src="/static/js/admin.js"></script>
     <script src="/static/js/jquery.validate.min.js"></script>
     <script src="/static/js/jquery.artDialog.min.js"></script>
     <link href="/static/css/admin.css" rel="stylesheet" type="text/css">
-    <link href="/static/css/manager.css1" rel="stylesheet" type="text/css">
-    <link href="/static/css/member.css1" rel="stylesheet" type="text/css">
-    <link href="/static/css/simple.css1" rel="stylesheet" type="text/css">
     <!-- 新 Bootstrap 核心 CSS 文件 -->
     <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.4/css/bootstrap.min.css">
 </head>
@@ -19,28 +15,44 @@
 <div class="admin_page">
     <h3>添加商品模板</h3>
 <!--管理中心右内容开始-->
-    <form method="post" enctype="multipart/form-data">
+    <form id="addGoods-form" method="post" enctype="multipart/form-data">
     <ul class="list-group">
-        <input type="hidden" id="category1" name="category1">
-        <input type="hidden" id="category2" name="category2">
-        <input type="hidden" id="category3" name="category3">
         <li class="list-group-item">名称：<input name="name" type="text" /></li>
-        <li class="list-group-item">净含量：<input name="price" type="text" /></li>
+        <li class="list-group-item">品牌：
+        	<select name="brand_id">
+        	<option value="-1">请选择品牌</option>
+        	<?php
+        		if(!empty($brands)) {
+                	foreach($brands as $brand)
+                	{
+                    	echo "<option value='{$brand['id']}'>{$brand['name']}</option>";
+                	}
+        		}
+        	?>
+        	</select>
+       	</li>
+        <li class="list-group-item">净含量：<input name="net_content" type="text" /></li>
         <li class="list-group-item">单位：<input name="format" type="text" /></li>
         <li class="list-group-item">商品编码：<input name="product_code" type="text" /></li>
         <li class="list-group-item" style="vertical-align:middle;">产品配料：<textarea style="vertical-align:middle;" name="product_ingredients"></textarea></li>
         <li class="list-group-item">保质期：<input name="shelf_life" type="text"/></li>
     </ul>
     <h4>商品图片</h4>
-    <ol class="list-group">
-        <li class="list-group-item"><input name="images[]" type="file"/></li>
-        <li class="list-group-item"><input name="images[]" type="file"/></li>
-        <li class="list-group-item"><input name="images[]" type="file"/></li>
-        <li class="list-group-item"><input name="images[]" type="file"/></li>
-        <li class="list-group-item"><input name="images[]" type="file"/></li>
-        <li class="list-group-item"><input name="images[]" type="file"/></li>
-    </ol>
-    <div class="c_col8"><input class="btn btn-primary" type="submit" value="提交"></div>
+    <table class="table table-bordered">
+    	<tr>
+    		<td><input name="images[]" type="file"/></td>
+    		<td><input name="images[]" type="file"/></td>
+    	</tr>
+    	    	<tr>
+    		<td><input name="images[]" type="file"/></td>
+    		<td><input name="images[]" type="file"/></td>
+    	</tr>
+    	    	<tr>
+    		<td><input name="images[]" type="file"/></td>
+    		<td><input name="images[]" type="file"/></td>
+    	</tr>
+    </table>
+    <div><center><input id="addGoods" class="btn btn-primary" type="button" value="提交"></center></div>
     </form>
 </div>
 <!--管理中心右内容结束-->

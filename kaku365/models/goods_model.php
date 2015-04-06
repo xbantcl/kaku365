@@ -223,6 +223,34 @@ OR `category3` = '$cate_id')";
 		$this -> db -> like('name',$words);
 		return $this -> db -> get() -> result_array();
 	}
+	
+	/**
+	 * 获取系统商品模板信息.
+	 * 
+	 * @param string $prdCode 商品编码.
+	 * 
+	 * @return array
+	 */
+	public function getGoodsTemplate($prdCode)
+	{
+		$this -> db -> select('*');
+		$this -> db -> from('goods_template');
+		$this -> db -> where('status', 1);
+		$this -> db -> where('product_code', $prdCode);
+		$gt = $this -> db -> get() -> result_array();
+		if (!empty($gt[0]['brand_id'])) {
+			$this -> db -> select('name');
+			$this -> db -> from('goods_brand');
+			$this -> db -> where('id', $gt[0]['brand_id']);
+			$this -> db -> where('status', 1);
+			$brand = $this -> db -> get() -> result_array();
+			$gt[0]['brand_name']  = $brand[0]['name'];
+		}
+		if (!empty($gt[0])) {
+			return $gt[0];
+		}
+		return $gt;
+	}
 }
 
 /* End of file goods_model.php */

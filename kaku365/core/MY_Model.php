@@ -33,7 +33,7 @@ class MY_Model extends CI_Model
 	 */
 	protected function _get($filed='*',$where=array(),$like=array(),$order=array(),$limit=array())
 	{
-		$this->db->select($filed,false);
+		$this->db->select($filed, false);
 		$this->db->from($this->table);
 		/* where条件 */
 		if(is_array($where))

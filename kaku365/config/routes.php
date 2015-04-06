@@ -40,6 +40,7 @@
 
 $route['default_controller'] = "welcome";
 $route['404_override'] = '';
+// 后台管理路由
 $route['admin/login'] = "admin/admin/login";
 $route['admin/code'] = "admin/admin/code";
 $route['admin/index'] = "admin/admin/index";
@@ -49,6 +50,13 @@ $route['admin/serverData'] = "admin/admin/serverData";
 $route['admin/shopManage'] = "admin/admin/shopManage";
 $route['admin/userManage'] = "admin/admin/userManage";
 $route['admin/getCategoryAjax'] = "admin/admin/getCategoryAjax";
+$route['admin/categoryList'] = "admin/admin/categoryList";
+$route['admin/getCategoryTreeAjax'] ="admin/admin/getCategoryTreeAjax";
+$route['admin/categoryUpdate/(\d+)'] = "admin/admin/categoryUpdate/$1";
+$route['admin/addBrand'] = "admin/admin/addBrand";
+$route['admin/brandList'] = "admin/admin/brandList";
+$route['admin/deleteBrands/(\d+)'] = "admin/admin/deleteBrands/$1";
+$route['admin/updateBrands/(\d+)'] = "admin/admin/updateBrands/$1";
 
 /* End of file routes.php */
 /* Location: ./application/config/routes.php */

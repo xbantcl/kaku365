@@ -39,8 +39,13 @@ class Shop_user_model extends MY_Model
             $data[ 'token' ] = $token;
             $this->_update($data, $where);
             $this->user = $user;
-            $this->input->set_cookie('uid', $user[ 0 ][ 'id' ], 3600 * 24 * 30);
-            $this->input->set_cookie('token', $token, 3600 * 24 * 30);
+            // $this->input->set_cookie('uid', $user[ 0 ][ 'id' ], 3600 * 24 * 30);
+            // $this->input->set_cookie('token', $token, 3600 * 24 * 30);
+            $this->session->set_userdata('uid', $user[ 0 ][ 'id' ]);
+            $this->session->set_userdata('token', $token);
+            // 添加默认分类
+		    $this->load->model('category_model');
+		    $this->category_model->addDefaultCategory();
             return true;
         } else {
             return false;
@@ -63,8 +68,10 @@ class Shop_user_model extends MY_Model
             $where['id'] = (int)$user[ 'id' ];
         }
         elseif ($user == null) {
-            $user[ 'id' ]    = $this->input->cookie('uid');
-            $user[ 'token' ] = $this->input->cookie('token');
+            // $user[ 'id' ]    = $this->input->cookie('uid');
+            // $user[ 'token' ] = $this->input->cookie('token');
+            $user[ 'id' ]    = $this->session->userdata('uid');
+            $user[ 'token' ] = $this->session->userdata('token');
             $where[ 'id' ]    = (int)$user[ 'id' ];
             $where[ 'token' ] = $user[ 'token' ];
         }
@@ -106,8 +113,8 @@ class Shop_user_model extends MY_Model
     public function register($new_user)
     {
         if (isset($new_user[ 'username' ]) && isset($new_user[ 'password' ]) && isset($new_user[ 'phone' ])) {
-            if ($this->_add($new_user)) {
-                return true;
+        	if ($this->_add($new_user)) {
+        		return true;
             } else {
                 return false;
             }

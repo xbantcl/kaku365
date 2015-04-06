@@ -29,10 +29,10 @@
 		<ul>
 		<?php foreach($Goods['img_content'] as $img)
             if(strlen($img))
-		echo "<li onClick=\"setImg('/static/uploads/$img')\"><img src=\"/static/uploads/$img\"></li>";
+		echo "<li onClick=\"setImg('/static/uploads/admin_goods/$img')\"><img src=\"/static/uploads/admin_goods/$img\"></li>";
 		?>
 		</ul>
-		<img style=" margin-top: 20px; margin-left: 150px;width: 600px; " id="b_img" src="/static/uploads/<?=$Goods['cover_image'];?>"/>
+		<img style=" margin-top: 20px; margin-left: 150px;width: 600px; " id="b_img" src="/static/uploads/admin_goods/<?=$Goods['cover_image'];?>"/>
 	</div>
 	<!--产品图片结束-->
 	<script>

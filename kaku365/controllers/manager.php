@@ -20,6 +20,7 @@ class Manager extends CI_Controller
             redirect('shop_user/login');
         }
         $this->load->model('Manager_model');
+        $this->load->model('goods_model');
     }
 
 
@@ -80,6 +81,111 @@ class Manager extends CI_Controller
      */
     public function add_goods()
     {
+    	$checkValue = '';
+    	// 前端模板页面
+    	$template   = 'add_goods_1';
+    	if (isset($_POST) && count($_POST)) {
+    		$checkValue = $this->input->post('add-goods');
+    	}
+    	if (isset($_POST) && count($_POST) && 'prdCode' == $checkValue) {
+    		$prdCode = $this->input->post('product_code');
+    		$gt = $this->goods_model->getGoodsTemplate($prdCode);
+    		if (!empty($gt)) {
+    			$data['name']   = $gt['brand_name'] . ' ' . $gt['name'] . ' ' . $gt['net_content'];
+    			$data['format'] = $gt['format'];
+    			$data['brand_name']  = $gt['brand_name'];
+    			$data['product_code'] = $gt['product_code'];
+    			$data['product_ingredients'] = $gt['product_ingredients'];
+    			$data['shelf_life'] = $gt['shelf_life'];
+    			$data['brand_id']   = $gt['brand_id'];
+    			$data['cover_image']   = $gt['cover_image'];
+    			$data['prd_images']   = $gt['images'];
+    			$data['images'] = explode(',', $gt['images']);
+	    		$data[ 'brands' ]    = $this->Manager_model->get_brand();
+		        $data[ 'categorys' ] = $this->Manager_model->get_category(0);
+		        $data['user'] = $this->Shop_user_model->user;
+				$template = 'add_goods_2';
+    		}
+    	} elseif (isset($_POST) && count($_POST)) {
+            $goods[ 'name' ]                = $this->input->post('name');
+            $goods[ 'brand_id' ]            = $this->input->post('brand_id');
+            $goods[ 'category1' ]           = $this->input->post('category1');
+            $goods[ 'category2' ]           = $this->input->post('category2');
+            $goods[ 'category3' ]           = $this->input->post('category3');
+            $goods[ 'price' ]               = $this->input->post('price');
+            $goods[ 'format' ]              = $this->input->post('format_h');
+            $goods[ 'product_code' ]        = $this->input->post('product_code_h');
+            $goods[ 'product_ingredients' ] = $this->input->post('product_ingredients_h');
+            $goods[ 'shelf_life' ]          = $this->input->post('shelf_life_h');
+            $goods[ 'description' ]         = $this->input->post('description');
+            $goods[ 'status' ]              = $this->input->post('status');
+            $goods[ 'cover_image' ]         = $this->input->post('cover_image');
+            $goods[ 'images' ]          = $this->input->post('prd_images');
+            if (isset($_FILES[ 'images' ])) {
+                $this->load->helper('image');
+                $goods[ 'images' ] = '';
+                $goods[ 'cover_image' ] = '';
+                for ($i = 0; $i < count($_FILES[ 'images' ][ 'tmp_name' ]); $i++) {
+                    if (isset($_FILES[ 'images' ][ 'tmp_name' ][ $i ]) && is_uploaded_file($_FILES[ 'images' ][ 'tmp_name' ][ $i ]) && $_FILES[ 'images' ][ 'error' ][ $i ] == 0) {
+                        $x   = explode('.', $_FILES[ 'images' ][ 'name' ][ $i ]);
+                        $ext = strtolower(end($x));
+                        $md5 = $goods[ 'product_code' ] . "_$i";
+                        $this->load->helper('common');
+                		$filePath = createFolder(UPLOAD_PATH, 'manager_goods');
+	            		if (!$filePath) {
+	            			echo "<script>alert('添加商品失败')</script>";
+	            		}
+                        if (strpos($ext, 'jpg') !== false || strpos($ext, 'png') !== false || strpos($ext,
+                                'gif') !== false
+                        ) {
+                        	$fileName   = "{$md5}.{$ext}";  
+	                    	$saveStatus = move_uploaded_file($_FILES[ 'images' ][ 'tmp_name' ][ $i ], $filePath . $fileName);
+                            if ($saveStatus) {
+                                $goods[ 'images' ] .= $fileName . ',';
+                                if($goods[ 'cover_image' ] == '')
+                                {
+	                            	$squarePath = createFolder(UPLOAD_PATH, 'manager_square');
+	                            	$bmiddlePath = createFolder(UPLOAD_PATH, 'manager_bmiddle');
+	                            	resizeImage($filePath . $fileName, $squarePath . $fileName, 100);
+	                                resizeImage($filePath . $fileName, $bmiddlePath . $fileName, 320);
+	                                $goods[ 'cover_image' ] = $fileName;
+                                }
+                            }
+
+                        }
+                    }
+                }
+            }
+            if($goods[ 'category1' ] == 0)
+            {
+                echo "<script>alert('请选择分类')</script>";
+            }
+            elseif(strlen($goods[ 'product_code' ]) != 13)
+            {
+                echo "<script>alert('请输入13位编码')</script>";
+            }
+            elseif ($this->Manager_model->add_goods($goods)) {
+                echo "<script>alert('添加成功')</script>";
+            } else {
+                echo "<script>alert('添加失败')</script>";
+            }
+        }
+        $data[ 'brands' ]    = $this->Manager_model->get_brand();
+        $data[ 'categorys' ] = $this->Manager_model->get_category(0);
+        $data['user'] = $this->Shop_user_model->user;
+        $this->load->view('manager/header',$data);
+        $this->load->view('manager/menu');
+        $this->load->view('manager/' . $template);
+        $this->load->view('manager/footer');
+    }
+
+    /**
+     * 添加商品
+     * @author chenjia404
+     * @date   2015-01-25
+     */
+    public function add_goods_2()
+    {
         if (isset($_POST) && count($_POST)) {
             $goods[ 'name' ]                = $this->input->post('name');
             $goods[ 'brand_id' ]            = $this->input->post('brand_id');
@@ -139,10 +245,9 @@ class Manager extends CI_Controller
         $data['user'] = $this->Shop_user_model->user;
         $this->load->view('manager/header',$data);
         $this->load->view('manager/menu');
-        $this->load->view('manager/' . __FUNCTION__);
+        $this->load->view('manager/add_goods_1');
         $this->load->view('manager/footer');
     }
-
 
     /**
      * 新增品牌
@@ -162,7 +267,7 @@ class Manager extends CI_Controller
                         'gif') !== false
                 ) {
                     if (move_uploaded_file($_FILES[ 'image' ][ 'tmp_name' ],
-                        'static/uploads/brand/' . $md5 . '.' . $ext)) {
+                        'd:/webroot/kaku365/static/uploads/brand/' . $md5 . '.' . $ext)) {
                         $brand[ 'image' ]  = $md5 . '.' . $ext;
                     }
                 }
@@ -355,6 +460,7 @@ class Manager extends CI_Controller
                 echo "<script>alert('更新失败')</script>";
             }
         }
+       
         $data[ 'categorys' ] = $this->Manager_model->get_category(0);//exit(json_encode($data[ 'categorys' ]));
         $data[ 'categorys_path' ] = $this->Manager_model->get_category_path($id);
         $data['category'] = $this->Manager_model->get_category_one($id);

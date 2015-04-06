@@ -246,22 +246,20 @@ class Admin extends CI_Controller {
             $category[ 'pid' ]    = $this->input->post('pid');
             $category[ 'name' ]   = $this->input->post('name');
             $category[ 'status' ] = $this->input->post('status');
-            if ($this->Manager_model->add_category($category)) {
+            if ($this->Admin_model->addCategory($category)) {
                 echo "<script>alert('添加成功')</script>";
             } else {
                 echo "<script>alert('添加失败')</script>";
             }
         }
-        $data['categorys'] = $this->Admin_model->getCategory(0);
-        //echo '<pre>';
-        //print_r($data['categorys']);exit;
+        $data['categorys'] = $this->Admin_model->getCategories();
         $this->load->view('admin/goods/' . __FUNCTION__, $data);
     }
     
     /**
      * ajax获取商品分类
-     * @author chenjia404
-     * @date   2015-01-25
+     * @author xiaoboa
+     * @date   2015-04-03
      */
     public function getCategoryAjax()
     {
@@ -269,6 +267,182 @@ class Admin extends CI_Controller {
         $data = $this->Admin_model->getCategory($pid);
         echo json_encode($data);
     }
+    
+    /**
+     * 管理分类
+     * @author xiaoboa
+     * @date   2015-04-03
+     */
+    public function categoryList()
+    {
+        $data['title'] = '分类管理';
+        $this->load->view('admin/goods/' . __FUNCTION__, $data);
+    }
+    
+    /**
+     * ajax获取商品分类
+     * @author xiaoboa
+     * @date   2015-04-03
+     */
+    public function getCategoryTreeAjax()
+    {
+        $pid = (int)$this->input->get('id');
+        $data = $this->Admin_model->getCategoryTree();
+        echo json_encode($data);
+    }
+    
+    /**
+     * 更新分类
+     * @author xiaoboa
+     * @date   2015-04-03
+     * 
+     * @param integer $id 分类ID.
+     */
+    public function categoryUpdate($id)
+    {
+        $id = (int)$id;
+        if (isset($_POST) && count($_POST)) {
+            $category[ 'leave' ]  = $this->input->post('leave');
+            $category[ 'pid' ]    = $this->input->post('pid');
+            $category[ 'name' ]   = $this->input->post('name');
+            $category[ 'status' ] = $this->input->post('status');
+            if ($this->Admin_model->updateCategory($id, $category)) {
+                echo "<script>alert('更新成功')</script>";
+            } else {
+                echo "<script>alert('更新失败')</script>";
+            }
+        }
+        $data['categorys'] = $this->Admin_model->getCategories();
+        $data['categorys_path'] = $this->Admin_model->getCategoryPath($id);
+        $data['category'] = $this->Admin_model->getCategoryOne($id);
+        $data['title'] = '更新分类';
+        $this->load->view('admin/goods/updateCategory', $data);
+    }
+    
+    /**
+     * 新增品牌
+     * @author xiaoboa
+     * @date   2015-01-25
+     */
+    public function addBrand()
+    {
+        if (isset($_POST) && count($_POST)) {
+            $brand['name'] = $this->input->post('name');
+            $brand['rank'] = $this->input->post('rank');
+            $filePath = UPLOAD_PATH . '/admin_brand/';
+            if (isset($_FILES['image']) && $_FILES['image']['error'] == 0) {
+                $x   = explode('.', $_FILES[ 'image' ][ 'name' ]);
+                $ext = strtolower(end($x));
+                $md5 = md5_file($_FILES[ 'image' ][ 'tmp_name' ]);
+                if (strpos($ext, 'jpg') !== false || strpos($ext, 'png') !== false || strpos($ext, 'gif') !== false) {
+                	if (!is_dir($filePath)) {
+                		@mkdir($filePath, 0777);
+                	}
+                	if (!is_dir($filePath)) {
+                		echo "<script>alert('添加失败')</script>";
+                		$this->load->view('admin/brand/' . __FUNCTION__);
+                	}
+                	$fileName = $filePath . $md5 . '.' . $ext;
+                	$saveStatus = move_uploaded_file($_FILES[ 'image' ][ 'tmp_name' ], $fileName); 
+                    if ($saveStatus) {
+                        $brand['image']  = $md5 . '.' . $ext;
+                    }
+                }
+            }
+            if ($this->Admin_model->addBrand($brand)) {
+                echo "<script>alert('添加成功')</script>";
+            } else {
+                echo "<script>alert('添加失败')</script>";
+            }
+        }
+        $this->load->view('admin/brand/' . __FUNCTION__);
+    }
+    
+    /**
+     * 品牌管理
+     * @author xiaoboa
+     * @date   2015-04-03
+     */
+    public function brandList()
+    {
+        $next_page = '?';
+        $like      = array();
+        if (strlen($this->input->get('name'))) {
+            $like[ 'name' ] = $this->input->get('name');
+            $next_page .= "&name=" . $this->input->get('name');
+        }
+        $page = intval($this->input->get('page'));
+        if ($page < 1) {
+            $page = 1;
+        }
+        $data['brands'] = $this->Admin_model->brandList($like, array(), $page);
+        foreach ($data['brands'] as $index => $item) {
+        	$data['brands'][$index]['image'] =  "/static/uploads/admin_brand/" . $item['image'];
+        }
+        if (count($data[ 'brands' ]) >= 10) {
+            $data['next_page'] = $next_page . "&page=" . ($page + 1);
+        }
+        if ($page > 1) {
+            $data[ 'preview_page' ] = $next_page . "&page=" . ($page - 1);
+        }
+        $this->load->view('admin/brand/' . __FUNCTION__, $data);
+    }
+    
+    /**
+     * 删除品牌
+     * @author xiaoboa
+     * @date   2015-04-03
+     * @param integer $id 品牌ID.
+     */
+    public function deleteBrands($id = 0)
+    {
+        $this->Admin_model->deleteBrands($id);
+        echo json_encode(array('msg' => '删除成功<script>window.location.reload();</script>'));
+    }
+    
+    /**
+     * 编辑品牌
+     * @author chenjia404
+     * @date   2015-01-25
+     * @param int $id
+     */
+    public function updateBrands($id = 0)
+    {
+        $where['id'] = $id;
+        if(isset($_POST['name']) &&  isset($_POST['rank']))
+        {
+            $brand[ 'name' ] = $this->input->post('name');
+            $brand[ 'rank' ] = $this->input->post('rank');
+            if (isset($_FILES[ 'image' ]) && $_FILES[ 'image' ]['error'] == 0) {
+                $x   = explode('.', $_FILES[ 'image' ][ 'name' ]);
+                $ext = strtolower(end($x));
+                if(file_exists($_FILES[ 'image' ][ 'tmp_name' ])) {
+                	$md5 = md5_file($_FILES[ 'image' ][ 'tmp_name' ]);
+                	$filePath = UPLOAD_PATH . '/admin_brand/';
+                	$fileName = $filePath . $md5 . '.' . $ext;
+                	$saveStatus = @move_uploaded_file($_FILES[ 'image' ][ 'tmp_name' ], $fileName); 
+                	if (strpos($ext, 'jpg') !== false || strpos($ext, 'png') !== false || strpos($ext, 'gif') !== false) {
+	                    if ($saveStatus) {
+	                        $brand['image'] = $md5 . '.' . $ext;
+	                    }
+                	}
+                }
+            }
+            if ($this->Admin_model->updateBrand($brand, $where)) {
+                echo "<script>alert('修改成功')</script>";
+            } else {
+                echo "<script>alert('修改失败')</script>";
+            }
+        }
+        $where['id'] = $id;
+        $brands = $this->Admin_model->brandList(array(), $where);
+        $data['brands'] = isset($brands[0]) ? $brands[0] : array();
+        if (isset($data['brands']['image'])) {
+        	$data['brands']['image'] = '/static/uploads/admin_brand/' . $data['brands']['image'];
+        }
+        $this->load->view('admin/brand/' . __FUNCTION__, $data);
+    }
+
 }
 /* End of file admin.php */
 /* Location: ./application/controllers/admin.php */

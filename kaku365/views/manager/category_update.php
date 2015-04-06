@@ -3,7 +3,7 @@
     $(document).ready(function () {
         var opts14 = {
             data: districtData,
-            ajax: '/manager/get_category_ajax/?',    // ajax与data配合获取未定义的下级数据
+            //ajax: '/manager/get_category_ajax/?',    // ajax与data配合获取未定义的下级数据
             selStyle: 'margin-left: 3px;',
             loaderImg: '/static/images/ui-anim_basic_16x16.gif',
             select: '#p_category',

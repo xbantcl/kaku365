@@ -104,17 +104,20 @@
 								<a href="javascript:;" onClick="setSrc('<?=site_url('admin/shop/addGoods')?>')">
 									添加商品
 								</a>
-								<a href="javascript:;" onClick="setSrc('<?=site_url('admin/user/userManager')?>')">
+								<a href="javascript:;" onClick="setSrc('<?=site_url('admin/shop/goodsList')?>')">
 									管理商品
 								</a>
-								<a href="javascript:;" onClick="setSrc('<?=site_url('admin/user/userManager')?>')">
+								<a href="javascript:;" onClick="setSrc('<?=site_url('admin/addBrand')?>')">
 									添加品牌
 								</a>
-								<a href="javascript:;" onClick="setSrc('<?=site_url('admin/user/userManager')?>')">
+								<a href="javascript:;" onClick="setSrc('<?=site_url('admin/brandList')?>')">
 									管理品牌
 								</a>
 								<a href="javascript:;" onClick="setSrc('<?=site_url('admin/admin/addCategory')?>')">
 									添加分类
+								</a>
+								<a href="javascript:;" onClick="setSrc('<?=site_url('admin/admin/categoryList')?>')">
+									管理分类
 								</a>
 							</li>
 						</ul>
