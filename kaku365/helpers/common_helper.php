@@ -9,13 +9,13 @@
  */
 function createFolder($bashPath, $category = '')
 {
-	$bashPath = trim($bashPath, '/');
+	$bashPath = rtrim($bashPath, '/');
 	$filePath = $bashPath . '/' . $category;
 	if (!empty($category)) {
 		$filePath = $bashPath . '/' . $category . '/';
 	}
 	if (!is_dir($filePath)) {
-		@mkdir($filePath, DIR_WRITE_MODE);
+		mkdir($filePath, DIR_WRITE_MODE);
 	}
 	if (!is_dir($filePath)) {
 		return false;

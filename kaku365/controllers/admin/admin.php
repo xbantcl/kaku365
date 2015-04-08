@@ -342,7 +342,7 @@ class Admin extends CI_Controller {
         if (isset($_POST) && count($_POST)) {
             $brand['name'] = $this->input->post('name');
             $brand['rank'] = $this->input->post('rank');
-            $filePath = UPLOAD_PATH . '/admin_brand/';
+            $filePath = UPLOAD_PATH . '/brands/';
             if (isset($_FILES['image']) && $_FILES['image']['error'] == 0) {
                 $x   = explode('.', $_FILES[ 'image' ][ 'name' ]);
                 $ext = strtolower(end($x));
@@ -378,26 +378,25 @@ class Admin extends CI_Controller {
      */
     public function brandList()
     {
-        $next_page = '?';
-        $like      = array();
-        if (strlen($this->input->get('name'))) {
-            $like[ 'name' ] = $this->input->get('name');
-            $next_page .= "&name=" . $this->input->get('name');
-        }
-        $page = intval($this->input->get('page'));
+        $query = '';
+        $pageSize = 1;
+        $page = intval($this->input->get('p'));
         if ($page < 1) {
             $page = 1;
         }
-        $data['brands'] = $this->Admin_model->brandList($like, array(), $page);
+        $like = array();
+        if (strlen($this->input->get('name'))) {
+            $like[ 'name' ] = $this->input->get('name');
+            $query .= "&name=" . $this->input->get('name');
+        }
+        $data['brands'] = $this->Admin_model->brandList($like, array(), $page, $pageSize);
         foreach ($data['brands'] as $index => $item) {
-        	$data['brands'][$index]['image'] =  "/static/uploads/admin_brand/" . $item['image'];
+        	$data['brands'][$index]['image'] =  "/static/uploads/brands/" . $item['image'];
         }
-        if (count($data[ 'brands' ]) >= 10) {
-            $data['next_page'] = $next_page . "&page=" . ($page + 1);
-        }
-        if ($page > 1) {
-            $data[ 'preview_page' ] = $next_page . "&page=" . ($page - 1);
-        }
+        $brandsTotal = $this->Admin_model->getBrandsTotal($like, array());
+        $totalPage   = ceil($brandsTotal / $pageSize);
+        $this->load->helper('paginate');
+        $data['pagination'] = paginationByTotalPage($page, $totalPage, $query);
         $this->load->view('admin/brand/' . __FUNCTION__, $data);
     }
     
@@ -431,7 +430,7 @@ class Admin extends CI_Controller {
                 $ext = strtolower(end($x));
                 if(file_exists($_FILES[ 'image' ][ 'tmp_name' ])) {
                 	$md5 = md5_file($_FILES[ 'image' ][ 'tmp_name' ]);
-                	$filePath = UPLOAD_PATH . '/admin_brand/';
+                	$filePath = UPLOAD_PATH . '/brands/';
                 	$fileName = $filePath . $md5 . '.' . $ext;
                 	$saveStatus = @move_uploaded_file($_FILES[ 'image' ][ 'tmp_name' ], $fileName); 
                 	if (strpos($ext, 'jpg') !== false || strpos($ext, 'png') !== false || strpos($ext, 'gif') !== false) {
@@ -451,7 +450,7 @@ class Admin extends CI_Controller {
         $brands = $this->Admin_model->brandList(array(), $where);
         $data['brands'] = isset($brands[0]) ? $brands[0] : array();
         if (isset($data['brands']['image'])) {
-        	$data['brands']['image'] = '/static/uploads/admin_brand/' . $data['brands']['image'];
+        	$data['brands']['image'] = '/static/uploads/brands/' . $data['brands']['image'];
         }
         $this->load->view('admin/brand/' . __FUNCTION__, $data);
     }

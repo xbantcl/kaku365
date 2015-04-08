@@ -56,7 +56,7 @@ height: 85px;" value=""><?php echo $goods['product_ingredients'];?></textarea></
         foreach($goods['images'] as $img)
         {
             if(strlen($img))
-            echo "<img src=\"/static/uploads/admin_goods/$img\"/ style=\" height: 100px; width: 100px;margin: 10px;\">";
+                echo "<img src=\"/static/uploads/brands_{$goods['brand_id']}/$img\"/ style=\" height: 100px; width: 100px;margin: 10px;\">";
         }
         ?>
         <br/>

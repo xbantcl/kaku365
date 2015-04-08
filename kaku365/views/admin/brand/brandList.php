@@ -2,7 +2,6 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <link href="/static/css/manager.css" rel="stylesheet" type="text/css">
     <script src="/static/js/jquery-1.4.4.min.js"></script>
     <script src="/static/js/admin.js"></script>
     <script src="/static/js/jquery.artDialog.min.js"></script>
@@ -56,11 +55,7 @@
         </tbody>
     </table>
     <!--页码跳转开始-->
-    <div class="page_btn">
-        <?php if(isset($preview_page)) echo "<a href=\"$preview_page\">&lt;&nbsp;上一页</a>";?>
-        <?php if(isset($next_page)) echo "<a href=\"$next_page\">下一页&nbsp;&gt;</a>";?>
-    </div>
-    
+    <?php echo $pagination;?>
     <!--页码跳转结束-->
 </div>
 </body>

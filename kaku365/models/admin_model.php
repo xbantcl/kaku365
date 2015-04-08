@@ -262,13 +262,34 @@
         $this->table      = 'goods_brand';
         $where['shop_id'] = 0;
         if (!isset($where['status'])) {
-            $where['status < '] = 2;
+            $where['status'] = 1;
         }
         $limit['limit']  = $count;
         $limit['offset'] = ($page - 1) * $count;
         return $this->_get('*', $where, $like, array('rank'=>'ASC'), $limit);
     }
     
+    /**
+     * 获取商品品牌信息.
+     *
+     * @param array $like    匹配项.
+     * @param array $where   查询条件.
+     * @return array
+     */
+     public function getBrandsTotal($like = array(), $where = array())
+    {
+        $this->table      = 'goods_brand';
+        $where['shop_id'] = 0;
+        if (!isset($where['status'])) {
+            $where['status'] = 1;
+        }
+        $brandsTotal = $this->_get('count(1) as count', $where, $like);
+        if (!empty($brandsTotal[0]['count'])) {
+            return $brandsTotal[0]['count'];
+        }
+        return 0;
+    }
+
      /**
      * 删除品牌
      * @author xiaoboa

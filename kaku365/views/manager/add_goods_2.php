@@ -63,7 +63,7 @@
         foreach($images as $img)
         {
             if(strlen($img))
-            echo "<img src=\"/static/uploads/admin_goods/$img\"/ style=\" height: 100px; width: 100px;margin: 10px;\">";
+            echo "<img src=\"/static/uploads/brands_{$brand_id}/$img\"/ style=\" height: 100px; width: 100px;margin: 10px;\">";
         }
         ?>
     <div class="c_col8"><input type="submit" value="提交"></div>

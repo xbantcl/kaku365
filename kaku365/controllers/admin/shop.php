@@ -85,27 +85,34 @@ class Shop extends CI_Controller {
 	        $goods[ 'product_ingredients' ] = $this->input->post('product_ingredients');
 	        $goods[ 'shelf_life' ]          = $this->input->post('shelf_life');
 	        $goods[ 'status' ]              = 1;
+	        $flag = true;
+	        $errorMsg = '';
 	    	if(strlen($goods[ 'product_code' ]) != 13) {
 	            echo "<script>alert('请输入13位编码')</script>";
-	            $this->load->view('admin/goods/addGoods');
-	            exit;
 	        } elseif (isset($_FILES[ 'images' ])) {
 	        	$this->load->helper('common');
 	            $this->load->helper('image');
 	            $goods[ 'images' ] = '';
 	            $goods[ 'cover_image' ] = '';
-	            $filePath = createFolder(UPLOAD_PATH, 'admin_goods');
+	            $filePath = createFolder(UPLOAD_PATH, "brands_{$goods['brand_id']}");
 	            if (!$filePath) {
-	            	echo "<script>alert('添加商品失败')</script>";
+	                $flag = false;
+	            	$errorMsg = "<script>alert('文件夹创建失败')</script>";
 	            }
 	            for ($i = 0; $i < count($_FILES[ 'images' ][ 'tmp_name' ]); $i++) {
 	                if (isset($_FILES[ 'images' ][ 'tmp_name' ][ $i ]) && is_uploaded_file($_FILES[ 'images' ][ 'tmp_name' ][ $i ]) && $_FILES[ 'images' ][ 'error' ][ $i ] == 0) {
 	                    $x   = explode('.', $_FILES[ 'images' ][ 'name' ][ $i ]);
 	                    $ext = strtolower(end($x));
 	                    $md5 = $goods[ 'product_code' ] . "_{$i}_" . time();
-	                    if (strpos($ext, 'jpg') !== false || strpos($ext, 'png') !== false || strpos($ext, 'gif') !== false) {
-	                    	$fileName   = "{$md5}.{$ext}";  
-	                    	$saveStatus = move_uploaded_file($_FILES[ 'images' ][ 'tmp_name' ][ $i ], $filePath . $fileName);
+	                    if (strpos($ext, 'jpg') !== false) {
+	                    	$fileName   = "{$md5}.{$ext}";
+	                    	try {
+	                    	    $saveStatus = move_uploaded_file($_FILES[ 'images' ][ 'tmp_name' ][ $i ], $filePath . $fileName);
+	                    	} catch (Exception $e) {
+	                    	    $errorMsg = "<script>alert('保存图片失败')</script>";
+	                    	    $flag = false;
+	                    	    break;
+	                    	}
 	                        if ($saveStatus) {
 	                        	$goods[ 'images' ] .= $fileName . ',';
 	                            if($goods[ 'cover_image' ] == ''){
@@ -116,16 +123,19 @@ class Shop extends CI_Controller {
 	                                $goods[ 'cover_image' ] = $fileName;
 	                            }
 	                        }
-	
+	                    } else {
+	                        $errorMsg = "<script>alert('图片需要是jpg格式')</script>";
+	                        $flag = false;
 	                    }
 	                }
 	            }
 	        }
-	        if ($this->admin_model->addGoods($goods)) {
-	            echo "<script>alert('添加成功')</script>";
-	        } else {
-	            echo "<script>alert('添加失败')</script>";
+	        if ($flag && $this->admin_model->addGoods($goods)) {
+	            $errorMsg = "<script>alert('添加成功')</script>";
+	        } elseif($flag) {
+	            $errorMsg = "<script>alert('添加失败')</script>";
 	        }
+	        echo $errorMsg;
 	    }
 	    $data[ 'brands' ] = $this->admin_model->brandList();
 	    $this->load->view('admin/goods/addGoods', $data);

@@ -82,32 +82,52 @@
 	margin:5px 0px;
 }
 /*公共页码样式开始*/
+
 .page_btn {
-	float:right;
-	margin:10px auto;
+	float: right;
+  	font-size: 15px;
+  	margin: 20px 0;
+  	clear: both;
+	margin: 10px auto;
 }
 .page_btn span, .page_btn a, .page_btn b {
-	font-size:14px;
-	font-family:Tahoma, Geneva, sans-serif;
-	float:left;
-	margin:3px;
-	height:25px;
-	line-height:25px;
-	text-align:center;
-	border:1px solid #E1E2E3;
+	font-size: 15px;
+	font-family: Tahoma, Geneva, sans-serif;
+	margin: 3px;
+	padding:3px;
+	padding: 1px .25em 0;
+	height: 25px;
+	line-height: 25px;
+	text-align: center;
+	min-width: 2em;
+	color: black;
+	border: 1px solid #E1E2E3;
 }
-.page_btn span {
-	color:#666;
-	padding: 0px 5px;
-	cursor:pointer;
+.page_btn span.active {
+	color: #3300FF;
+	padding:3px;
+    border: none;
+}
+.page_btn a {
+	width: 25px;
+	cursor: pointer;
 }
 .page_btn b {
-	width:30px;
-	border:0;
+	width: 30px;
+	border: 0;
 }
-.page_btn span:hover, .page_btn a:hover {
-	background:#F3F7FF;
-	border:1px solid #6282B3;
+.page_btn span.prev  {
+	color: #aaa;
+}
+
+.page_btn span.next {
+	color: #aaa;
+}
+.page_btn a:hover {
+	text-decoration:none;
+	border-color:#ec1a5b;
+	background:#ec1a5b;
+	color:#fff
 }
 /*公共页码样式结束*/
 /*管理中心右内容公共样式结束*/

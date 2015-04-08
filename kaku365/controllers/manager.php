@@ -151,7 +151,6 @@ class Manager extends CI_Controller
 	                                $goods[ 'cover_image' ] = $fileName;
                                 }
                             }
-
                         }
                     }
                 }
@@ -176,76 +175,6 @@ class Manager extends CI_Controller
         $this->load->view('manager/header',$data);
         $this->load->view('manager/menu');
         $this->load->view('manager/' . $template);
-        $this->load->view('manager/footer');
-    }
-
-    /**
-     * 添加商品
-     * @author chenjia404
-     * @date   2015-01-25
-     */
-    public function add_goods_2()
-    {
-        if (isset($_POST) && count($_POST)) {
-            $goods[ 'name' ]                = $this->input->post('name');
-            $goods[ 'brand_id' ]            = $this->input->post('brand_id');
-            $goods[ 'category1' ]           = $this->input->post('category1');
-            $goods[ 'category2' ]           = $this->input->post('category2');
-            $goods[ 'category3' ]           = $this->input->post('category3');
-            $goods[ 'price' ]               = $this->input->post('price');
-            $goods[ 'format' ]              = $this->input->post('format');
-            $goods[ 'product_code' ]        = $this->input->post('product_code');
-            $goods[ 'product_ingredients' ] = $this->input->post('product_ingredients');
-            $goods[ 'shelf_life' ]          = $this->input->post('shelf_life');
-            $goods[ 'description' ]         = $this->input->post('description');
-            $goods[ 'status' ]         = $this->input->post('status');
-            if (isset($_FILES[ 'images' ])) {
-                $this->load->helper('image');
-                $goods[ 'images' ] = '';
-                $goods[ 'cover_image' ] = '';
-                for ($i = 0; $i < count($_FILES[ 'images' ][ 'tmp_name' ]); $i++) {
-                    if (isset($_FILES[ 'images' ][ 'tmp_name' ][ $i ]) && is_uploaded_file($_FILES[ 'images' ][ 'tmp_name' ][ $i ]) && $_FILES[ 'images' ][ 'error' ][ $i ] == 0) {
-                        $x   = explode('.', $_FILES[ 'images' ][ 'name' ][ $i ]);
-                        $ext = strtolower(end($x));
-                        $md5 = $goods[ 'product_code' ] . "_$i";
-                        if (strpos($ext, 'jpg') !== false || strpos($ext, 'png') !== false || strpos($ext,
-                                'gif') !== false
-                        ) {
-                            if (move_uploaded_file($_FILES[ 'images' ][ 'tmp_name' ][ $i ],
-                                'static/uploads/' . $md5 . '.' . $ext)) {
-                                $goods[ 'images' ] .= $md5 . '.' . $ext . ',';
-                                if($goods[ 'cover_image' ] == '')
-                                {
-                                    resizeImage('static/uploads/' . $md5 . '.' . $ext,'static/uploads/square/' . $md5 . '.' . $ext,100);
-                                    resizeImage('static/uploads/' . $md5 . '.' . $ext,'static/uploads/bmiddle/' . $md5 . '.' . $ext,320);
-                                    $goods[ 'cover_image' ] = $md5 . '.' . $ext;
-                                }
-                            }
-
-                        }
-                    }
-                }
-            }
-            if($goods[ 'category1' ] == 0)
-            {
-                echo "<script>alert('请选择分类')</script>";
-            }
-            elseif(strlen($goods[ 'product_code' ]) != 13)
-            {
-                echo "<script>alert('请输入13位编码')</script>";
-            }
-            elseif ($this->Manager_model->add_goods($goods)) {
-                echo "<script>alert('添加成功')</script>";
-            } else {
-                echo "<script>alert('添加失败')</script>";
-            }
-        }
-        $data[ 'brands' ]    = $this->Manager_model->get_brand();
-        $data[ 'categorys' ] = $this->Manager_model->get_category(0);
-        $data['user'] = $this->Shop_user_model->user;
-        $this->load->view('manager/header',$data);
-        $this->load->view('manager/menu');
-        $this->load->view('manager/add_goods_1');
         $this->load->view('manager/footer');
     }
 
@@ -461,7 +390,7 @@ class Manager extends CI_Controller
             }
         }
        
-        $data[ 'categorys' ] = $this->Manager_model->get_category(0);//exit(json_encode($data[ 'categorys' ]));
+        $data[ 'categorys' ] = $this->Manager_model->get_category(0);
         $data[ 'categorys_path' ] = $this->Manager_model->get_category_path($id);
         $data['category'] = $this->Manager_model->get_category_one($id);
         $data['title'] = '更新分类';
@@ -494,7 +423,8 @@ class Manager extends CI_Controller
     public function goods_list()
     {
         $like      = array();
-        $next_page = '?';
+        $next_page = '';
+        $pageSize = 2;
         if (strlen($this->input->get('name'))) {
             $like[ 'name' ] = $this->input->get('name');
             $next_page .= "&name=" . $this->input->get('name');
@@ -520,15 +450,14 @@ class Manager extends CI_Controller
             $where[ 'category3' ] = $this->input->get('category3');
             $next_page .= "&category3=" . $this->input->get('category3');
         }
-        $page = intval($this->input->get('page'));
+        $page = intval($this->input->get('p'));
         if ($page < 1) {
             $page = 1;
         }
-
-
-        $data[ 'goods' ]     = $this->Manager_model->goods_list($like, $where, $page);
+        $data[ 'goods' ]   = $this->Manager_model->goods_list($like, $where, $page, $pageSize);
+        $goodsTotal        = $this->Manager_model->getGoodsTotal($like, $where);
         $data['brands']    = $this->Manager_model->get_brand();
-        $data['all_page']    = $this->Manager_model->all_page();
+        $data['all_page']  = $this->Manager_model->all_page();
         $brands    = $data['brands'];
         foreach($brands as $br)
         {
@@ -536,14 +465,9 @@ class Manager extends CI_Controller
         }
         $data[ 'categorys' ] = $this->Manager_model->get_category(0);
         $data[ 'all_category' ] = $this->Manager_model->get_all_category();
-        $data[ 'page_href' ] = $next_page;
-        $data[ 'page' ] = $page;
-        if (count($data[ 'goods' ]) >= 10) {
-            $data[ 'next_page' ] = $next_page . "&page=" . ($page + 1);
-        }
-        if ($page > 1) {
-            $data[ 'preview_page' ] = $next_page . "&page=" . ($page - 1);
-        }
+        $totalPage = ceil($goodsTotal / $pageSize);
+        $this->load->helper('paginate');
+        $data['pagination'] = paginationByTotalPage($page, $totalPage, $next_page);
         $data['user'] = $this->Shop_user_model->user;
         $this->load->view('manager/header',$data);
         $this->load->view('manager/menu');

@@ -425,6 +425,32 @@ class Manager_model extends MY_Model
         }
         return $goods;
     }
+    
+    /**
+     * 获取商品列表
+     * 
+     * @author xiaoboa
+     * @date   2015-04-08
+     * 
+     * @param array $like
+     * @param array $where
+     * 
+     * @return array
+     */
+    public function getGoodsTotal($like = array(), $where = array())
+    {
+        $shop        = $this->Manager_model->get_shop();
+        $this->table = 'goods';
+        if (!isset($where[ 'status' ])) {
+            $where[ 'status < ' ] = 2;
+        }
+        $where[ 'shop_id' ] = $shop[ 'id' ];
+        $goodsTotal         = $this->_get('count(1) as count', $where, $like, array());
+        if (isset($goodsTotal[0]['count'])) {
+            return $goodsTotal[0]['count'];
+        }
+        return 0;
+    }
 
 
     /**
