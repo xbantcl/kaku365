@@ -18,7 +18,7 @@
 
 <!--头部标题注册搜索开始-->
 <div id="header">
-    <h1 title="返回首页"><a href="<?php if($user['shop_id']) echo'/shop/index/' . $user['shop_id'];?>">kaku365</a></h1>
+    <h1 title="返回首页"><a href="<?php if($user['shop_id']) echo'/shop/index/' . $user['shop_id'];?>" target="_blank">kaku365</a></h1>
     <span><a href=""><?php if(isset($user['username'])) echo $user['username'];else echo '已登录'; ?></a>|<a href="<?=site_url('shop_user/logout')?>">退出</a></span></div>
 <!--头部标题注册搜索结束-->
 <!--管理中心内容开始-->
