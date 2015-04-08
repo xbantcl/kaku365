@@ -49,7 +49,7 @@ function build_pages($current_page, $total_page){
  *
  * @return string
  */
-function paginationByTotalPage($currentPage, $totalPage)
+function paginationByTotalPage($currentPage, $totalPage, $query = '')
 {
     $currentPage = empty($currentPage) || $currentPage < 0 ? 1 : $currentPage;
     $pages = build_pages($currentPage, $totalPage);
@@ -62,19 +62,19 @@ function paginationByTotalPage($currentPage, $totalPage)
         if ($currentPage == 1) {
             $html .= '<span class="prev">上一页</span>';
         } else {
-            $html .= '<a class="prev" href="?p='. $prev .'">上一页</a>';
+            $html .= '<a class="prev" href="?p='. $prev . $query . '">上一页</a>';
         }
         foreach ($pages as $key => $page) {
             if ($page == '...' || $currentPage == $page) {
                 $html .= '<span class="active">' . $page . '</span>';
             } else {
-                $html .= '<a href="?p=' . $page . '">' . $page . '</a>';
+                $html .= '<a href="?p=' . $page . $query . '">' . $page . '</a>';
             }
         }
         if ($currentPage == $totalPage) {
             $html .= '<span class="next">下一页</span>';
         } else {
-            $html .= '<a class="next" href="?p=' . $next . '">下一页</a>';
+            $html .= '<a class="next" href="?p=' . $next . $query . '">下一页</a>';
         }
     }
     return $html;

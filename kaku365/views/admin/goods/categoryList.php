@@ -2,10 +2,11 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <script type="text/javascript" src="http://linkagesel.xiaozhong.biz/js/jquery.js"></script>
+    <script type="text/javascript" src="/static/js/jquery-1.9.1.min.js"></script>
     <link href="/static/css/admin.css" rel="stylesheet" type="text/css">
-        <script src="/static/js/jquery.ztree.all-3.5.js"></script>
+    <script src="/static/js/jquery.ztree.all-3.5.js"></script>
     <link href="/static/css/zTreeStyle.css" rel="stylesheet" type="text/css">
+    <link href="/static/css/demo.css" rel="stylesheet" type="text/css">
     <!-- 新 Bootstrap 核心 CSS 文件 -->
     <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.4/css/bootstrap.min.css">
 </head>
@@ -59,7 +60,7 @@
                 return false;
         }
         function zTreeOnRemove(event, treeId, treeNode) {
-            $.ajax({url : "/manager/category_delete/",
+            $.ajax({url : "/admin/admin/categoryDelete/",
                 cache : false,
                 type : "post",
                 async : false,

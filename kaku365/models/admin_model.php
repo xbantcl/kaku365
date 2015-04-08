@@ -165,7 +165,7 @@
             $categorys[] = $data[0]['pid'];
             $where['id'] = $data[0]['pid'];
             $data        = $this->_get('pid', $where);
-            if(isset($data[0]['pid']))
+            if(!empty($data[0]['pid']))
             {
                 $categorys[ ] = $data[ 0 ][ 'pid' ];
             }
@@ -209,6 +209,22 @@
     public function updateCategory($id, $data)
     {
         $this->table        = 'goods_category';
+        $where[ 'shop_id' ] = 0;
+        $where[ 'id' ]      = (int)$id;
+        return $this->_update($data, $where);
+    }
+    
+     /**
+     * 删除分类
+     * @author xiaoboa
+     * @date   2015-04-07
+     * @param  integer $id 分类ID.
+     * @return integer
+     */
+    public function categoryDelete($id)
+    {
+        $this->table        = 'goods_category';
+        $data[ 'status' ]   = 2;
         $where[ 'shop_id' ] = 0;
         $where[ 'id' ]      = (int)$id;
         return $this->_update($data, $where);
@@ -331,6 +347,29 @@
     }
     
      /**
+     * 获取商品列表
+     * @author xiaoboa
+     * @date   2015-04-04
+     * @param array   $like
+     * @param array   $where
+     * @param integer $page
+     * @param integer $count
+     * @return array
+     */
+    public function getGoodsTotalCount($like = array(), $where = array())
+    {
+        $this->table = 'goods_template';
+        if (!isset($where[ 'status' ])) {
+            $where[ 'status < ' ] = 2;
+        }
+        $totalCount = $this->_get('count(1) as count', $where, $like, array());
+        if (!empty($totalCount[0]['count'])) {
+        	return $totalCount[0]['count'];
+        }
+        return 0;
+    }
+    
+     /**
      * 删除商品
      * @author xiaoboa
      * @date   2015-04-04
@@ -340,7 +379,7 @@
     public function deleteGoodsTemplate($id = 0)
     {
         $this->table        = 'goods_template';
-        $data[ 'status' ]   = 2;
+        $data[ 'status' ]   = 0;
         $where[ 'id' ]      = (int)$id;
         return $this->_update($data, $where);
     }

@@ -139,43 +139,45 @@ class Shop extends CI_Controller {
     public function goodsList()
     {
         $like      = array();
-        $next_page = '?';
+        $query     = '';
+        $pageSize  = 1;
+        $this->load->helper('paginate');
+        $page = intval($this->input->get('p'));
+        $data['brand_id'] = '';
+        $data['status']   = '';
+        if (empty($page)) {
+        	$page = 1;
+        }
         if (strlen($this->input->get('name'))) {
             $like[ 'name' ] = $this->input->get('name');
-            $next_page .= "&name=" . $this->input->get('name');
+            $query .= "&name=" . $this->input->get('name');
         }
         $where = array();
         if (strlen($this->input->get('brand_id'))) {
             $where[ 'brand_id' ] = $this->input->get('brand_id');
-            $next_page .= "&brand_id=" . $this->input->get('brand_id');
+            $data['brand_id'] = $this->input->get('brand_id');
+            $query .= "&brand_id=" . $this->input->get('brand_id');
         }
         if ($this->input->get('status') != 'all' && $this->input->get('status') !== false) {
             $where[ 'status' ] = $this->input->get('status');
-            $next_page .= "&status=" . $this->input->get('status');
+            $data['status'] = $this->input->get('status');
+            $query .= "&status=" . $this->input->get('status');
         }
-        if (strlen($this->input->get('category1'))) {
-            $where[ 'category1' ] = $this->input->get('category1');
-            $next_page .= "&category1=" . $this->input->get('category1');
-        }
-        if (strlen($this->input->get('category2'))) {
-            $where[ 'category2' ] = $this->input->get('category2');
-            $next_page .= "&category2=" . $this->input->get('category2');
-        }
-        if (strlen($this->input->get('category3'))) {
-            $where[ 'category3' ] = $this->input->get('category3');
-            $next_page .= "&category3=" . $this->input->get('category3');
-        }
-        $page = intval($this->input->get('page'));
-        if ($page < 1) {
-            $page = 1;
-        }
-        $data['goods']     = $this->admin_model->goodsList($like, $where, $page);
-        $data['brands']    = $this->admin_model->brandList();
-        $brands    = $data['brands'];
-        foreach($brands as $br)
+        $data['goods']  = $this->admin_model->goodsList($like, $where, $page, $pageSize);
+        
+        $data['brands'] = $this->admin_model->brandList();
+        $brands = $data['brands'];
+        foreach($brands as $brand)
         {
-            $data['all_brands'][$br['id']] = $br['name'];
+        	foreach ($data['goods'] as $index => $good) {
+        		if ($good['brand_id'] == $brand['id']) {
+        			$data['goods'][$index]['brand_name'] = $brand['name'];
+        		}
+        	}
         }
+        $totalGoodsCount = $this->admin_model->getGoodsTotalCount($like, $where);
+        $totalPage = ceil($totalGoodsCount/$pageSize);
+        $data['pagination'] = paginationByTotalPage($page, $totalPage, $query);
         $this->load->view('admin/goods/' . __FUNCTION__, $data);
     }
 
@@ -187,7 +189,8 @@ class Shop extends CI_Controller {
      */
     public function deleteGoodsTemplate($id = 0)
     {
-        $this->admin_model->deleteGoodsTemplate($id);
+        $res = $this->admin_model->deleteGoodsTemplate($id);
+        echo json_encode($res);
         echo json_encode(array('msg' => '删除成功'));
     }
     

@@ -3,6 +3,8 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <link href="/static/css/admin.css" rel="stylesheet" type="text/css">
+    <script src="/static/js/linkagesel.js"></script>
+    <script type="text/javascript" src="/static/js/jquery-1.9.1.min.js"></script>
     <!-- 新 Bootstrap 核心 CSS 文件 -->
     <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.4/css/bootstrap.min.css">
 </head>

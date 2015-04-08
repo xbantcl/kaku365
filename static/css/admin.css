@@ -318,4 +318,10 @@ table {
     padding-left: 100px;	
 	clear:both;
 }
+.admin_product td img {
+	border:0px;
+	margin-top:4px;
+	height:50px;
+	width:50px;
+}
 /*添加商品样式结束*/

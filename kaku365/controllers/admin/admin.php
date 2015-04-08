@@ -320,6 +320,19 @@ class Admin extends CI_Controller {
     }
     
     /**
+     * 删除分类
+     * @author xiaoboa
+     * @date   2015-04-07
+     */
+    public function categoryDelete()
+    {
+        if($this->Admin_model->categoryDelete($this->input->post('id')))
+            echo json_encode(array('msg'=>'删除成功'));
+        else
+            echo json_encode(array('msg'=>'删除失败'));
+    }
+    
+    /**
      * 新增品牌
      * @author xiaoboa
      * @date   2015-01-25
